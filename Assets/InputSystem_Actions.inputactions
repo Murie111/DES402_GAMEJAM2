@@ -228,7 +228,7 @@
             "id": "4ab76842-87cf-43df-b870-dc1e0bb85928",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "Move2",
                     "type": "Value",
                     "id": "379f64e5-5362-4c72-9b92-89f6ea9d5655",
                     "expectedControlType": "Vector2",
@@ -246,7 +246,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact",
+                    "name": "Interact2",
                     "type": "Button",
                     "id": "da57b792-960d-48e5-9722-6921c5b66d03",
                     "expectedControlType": "",
@@ -263,7 +263,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -274,7 +274,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -285,7 +285,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -296,7 +296,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -307,7 +307,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -318,7 +318,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -329,7 +329,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -340,7 +340,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -351,7 +351,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -362,7 +362,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -373,7 +373,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -384,7 +384,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Move",
+                    "action": "Move2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -428,7 +428,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Interact",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -439,7 +439,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Interact",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
