@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,7 +10,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("displays connected: " + Display.displays.Length);
         if (Display.displays.Length > 1)
             Display.displays[1].Activate();
+        else
+            Debug.Log("Miss");
     }
 }
