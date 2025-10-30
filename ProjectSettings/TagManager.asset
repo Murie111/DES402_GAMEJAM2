@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Mouth
+  - Bobber
+  - Pond
+  - FishDefault
+  - FishPlayer
   layers:
   - Default
   - TransparentFX

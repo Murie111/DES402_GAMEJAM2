@@ -8,12 +8,18 @@ public class FishingPlayer : MonoBehaviour
 {
     public InputActionAsset InputActions;
     public Slider fishingPower;
+    public GameObject fishingPowerObj;
+    public bool mainScript;
     bool isIdle;
     bool casting;
+    bool fishing;
     public float fillSpeed;
     public GameObject bobber;
-    public Rigidbody target;
-
+    public GameObject target;
+    public GameObject bobberBody;
+    public Rigidbody bobberRb;
+    public bool withinPondBounds;
+    bool fishingBarUp;
     private InputAction F_MoveAction;
     private Vector2 F_MoveAmt;
     private InputAction F_InteractAction;
@@ -21,67 +27,107 @@ public class FishingPlayer : MonoBehaviour
 
     void Start()
     {
+        mainScript = true;
         isIdle = true;
         casting = false;
+        fishing = false;
+        withinPondBounds = false;
         F_InteractAction = InputSystem.actions.FindAction("Interact2");
         F_MoveAction = InputSystem.actions.FindAction("Move2");
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
-
-        F_MoveAmt = F_MoveAction.ReadValue<Vector2>();
-
-        if (!casting)
+        if (mainScript)
         {
-            if (target.position.x > -10 && target.position.x < 10)
+            F_MoveAmt = F_MoveAction.ReadValue<Vector2>();
+
+            if (fishingPower.value <= 0)
             {
-                target.MovePosition(target.transform.position + transform.right * F_MoveAmt.x * Time.deltaTime * 25);
+                fishingBarUp = true;
             }
-            if (target.position.x < -10f)
+            if (fishingPower.value >= 1)
             {
-                float targetX = target.position.x;
-                float targetY = target.position.y;
-                float targetZ = target.position.z;
-                targetX = (targetX + 0.05f);
-                target.position = new Vector3(targetX, targetY, targetZ);
+                fishingBarUp = false;
             }
-            if (target.position.x > 10f)
+
+
+            if (!fishing)
             {
-                float targetX = target.position.x;
-                float targetY = target.position.y;
-                float targetZ = target.position.z;
-                targetX = (targetX - 0.05f);
-                target.position = new Vector3(targetX, targetY, targetZ);
+                bobber.transform.Rotate(0f, 50 * (F_MoveAmt.x * Time.deltaTime), 0f);
             }
-        }
 
-        if (isIdle = F_InteractAction.IsPressed())
-        {
-            fishingPower.value = fishingPower.value + (fillSpeed * Time.deltaTime);
-            casting = true;
-        }
+            if (isIdle = F_InteractAction.IsPressed() && !fishing)
+            {
+                fishingPowerObj.SetActive(true);    
+                casting = true;
+                if (fishingBarUp)
+                {
+                    fishingPower.value = fishingPower.value + (fillSpeed * Time.deltaTime);
+                    target.transform.position += (target.transform.forward * Time.deltaTime * 10);
+                }
+                else
+                {
+                    fishingPower.value = fishingPower.value - (fillSpeed * Time.deltaTime);
+                    target.transform.position += -(target.transform.forward * Time.deltaTime * 10);
+                }
+            }
 
-        if (casting && !F_InteractAction.IsPressed())
-        {
-            isIdle = false;
-            //float bobberExp = fishingPower.value;
-            //float targetExpX = (MathF.Abs(MathF.Abs(target.position.x)-10));
-            //bobberExp = bobberExp * targetExpX;
+            if (F_InteractAction.IsPressed() && fishing && !casting)
+            {
+                ResetCast();
+            }
 
-            //bobber.transform.position = Vector3.Lerp(transform.position, target.position, bobberExp);
+            if (casting && !F_InteractAction.IsPressed())
+            {
+                fishing = true;
+                casting = false;
+                isIdle = false;
+                target.SetActive(false);
+                bobber.transform.position += (bobber.transform.forward * (fishingPower.value * 9.5f));
+                Invoke("bobberCast", 1.5f);
+                //float bobberExp = fishingPower.value;
+                //float targetExpX = (MathF.Abs(MathF.Abs(target.position.x)-10));
+                //bobberExp = bobberExp * targetExpX;
 
-            //bobber.transform.position = new Vector3(bobberNewX, bobberY, bobberZ);
-            //Invoke("ResetCast", 1f);
+                //bobber.transform.position = Vector3.Lerp(transform.position, target.position, bobberExp);
+
+                //bobber.transform.position = new Vector3(bobberNewX, bobberY, bobberZ);
+                //Invoke("ResetCast", 1f);
+            }
         }
     }
 
-    void ResetCast()
+
+
+    void bobberCast()
     {
+        if (withinPondBounds)
+        {
+            bobberBody.SetActive(true);
+            fishingPowerObj.SetActive(false);
+        }
+        else 
+        { 
+            ResetCast();
+        }
+    }
+
+    void inputDelay()
+    {
+        fishing = false;
+    }
+    public void ResetCast()
+    {
+        target.SetActive(true);
         fishingPower.value = 0f;
-        casting = false;
+        bobber.transform.localPosition = new Vector3(0f, -0.4f, 0f);
+        target.transform.localPosition = new Vector3(0f, 0f, 0f);
         isIdle = true;
+        Invoke("inputDelay", 0.25f);
+        bobberBody.SetActive(false);
+        withinPondBounds = false;
     }
 
     private void OnEnable()
