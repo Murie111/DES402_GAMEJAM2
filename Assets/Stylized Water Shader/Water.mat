@@ -52,9 +52,10 @@ Material:
     m_Ints: []
     m_Floats:
     - WORLD_SPACE_UV: 1
+    - _Depth_Distance: 0.15
     - _Depth_Fade_Distance: 0.38
     - _Foam_Blend: 1
-    - _Horizon_Distance: 1.5
+    - _Horizon_Distance: 2.6
     - _Intersection_Foam_Blend: 0
     - _Intersection_Foam_Color_Blend: 1
     - _Intersection_Foam_Cutoff: 1
