@@ -270,8 +270,6 @@ public class AI_Brain : MonoBehaviour
                     Target = hitColliders[0].transform;
                     actionState = State.Chasing;
 
-                    print(Target.position);
-
                     return;
                 }
             }
