@@ -597,8 +597,6 @@ public class AI_Brain_Editor : Editor
 
         if (script.sightAngle != 180f)
             script.enableAbsoluteSightRange = EditorGUILayout.Toggle("Absolute Sight", script.enableAbsoluteSightRange);
-        else
-            script.enableAbsoluteSightRange = false;
 
         if (script.enableAbsoluteSightRange)
         {
