@@ -55,7 +55,7 @@ Material:
     - _Depth_Distance: 0.15
     - _Depth_Fade_Distance: 0.38
     - _Foam_Blend: 1
-    - _Horizon_Distance: 2.6
+    - _Horizon_Distance: 2.2
     - _Intersection_Foam_Blend: 0
     - _Intersection_Foam_Color_Blend: 1
     - _Intersection_Foam_Cutoff: 1
@@ -65,10 +65,10 @@ Material:
     - _Intersection_Foam_Speed: 0
     - _Intersection_Foam_Tiling: 1
     - _Lighting_Hardness: 1
-    - _Lighting_Smoothness: 0.494
-    - _Normals_Scale: 0.2
+    - _Lighting_Smoothness: 0.558
+    - _Normals_Scale: 0.1143
     - _Normals_Speed: 0.0662
-    - _Normals_Strength: 1
+    - _Normals_Strength: 0.603
     - _QueueControl: 1
     - _QueueOffset: 0
     - _Refraction_Scale: 0.054

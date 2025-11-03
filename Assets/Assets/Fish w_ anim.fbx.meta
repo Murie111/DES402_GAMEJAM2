@@ -3,7 +3,22 @@ guid: 3fdd96207aaf3174c83d3fb4fe832c70
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: 33f0e2baf40c2f543bf24dd372cc3164, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes
+    second: {fileID: 2100000, guid: 241dc7f4317cc7340bb3ea20dff03e99, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fins
+    second: {fileID: 2100000, guid: 631a3b4e0304fea4b93666c5b7f000e3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -146,7 +161,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.001
+    globalScale: 0.1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

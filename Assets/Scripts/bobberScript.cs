@@ -28,12 +28,12 @@ public class bobberScript : MonoBehaviour
         if (other.CompareTag("FishPlayer"))
         {
             Invoke("hookedPlayer", 1.5f);
-            currentFish = null; //should set currentfish to the fish that touched the bobber
+            currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
         }
         if (other.CompareTag("FishDefault"))
         {
             Invoke("hookedDefault", 1.5f);
-            currentFish = null; //should set currentfish to the fish that touched the bobber
+            currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
         }
     }
 
@@ -154,6 +154,7 @@ public class bobberScript : MonoBehaviour
         fishingScript.mainScript = true;
         fishingScript.ResetCast();
         //winner!
+        //yipee
     }
 
     void failedPlayFish()

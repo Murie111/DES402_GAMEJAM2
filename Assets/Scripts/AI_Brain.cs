@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [DisallowMultipleComponent]
+[CanEditMultipleObjects]
 [RequireComponent(typeof(NavMeshAgent))]
 public class AI_Brain : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class AI_Brain : MonoBehaviour
     //Random Patrol
     public float patrolRange = 10f;
     public bool staticRange = true;     //In Random Patrol, does the range move with the player
+
+    public Vector3 staticRangeOffset;
 
     //Move To Position
     public Transform transformTarget;
@@ -183,7 +186,7 @@ public class AI_Brain : MonoBehaviour
             Vector3 randomPoint;
 
             if (staticRange)
-                randomPoint = FindRandomPointWithin(startingPos, patrolRange);
+                randomPoint = FindRandomPointWithin(startingPos + staticRangeOffset, patrolRange);
             else
                 randomPoint = FindRandomPointWithin(transform.position + transform.forward * (patrolRange / 2), patrolRange);
 
@@ -253,7 +256,7 @@ public class AI_Brain : MonoBehaviour
     private void SearchingForTarget()
     {
         Collider[] hitColliders = new Collider[1];
-        int hit = Physics.OverlapSphereNonAlloc(transform.position, sightRange, hitColliders, TargetMask, QueryTriggerInteraction.Ignore);
+        int hit = Physics.OverlapSphereNonAlloc(transform.position, sightRange, hitColliders, TargetMask);
 
         if (hit != 0)
         {
@@ -507,7 +510,12 @@ public class AI_Brain : MonoBehaviour
             else if (movementType == Type.Roaming)
             {
                 if (staticRange)
-                    Gizmos.DrawWireSphere(transform.position, patrolRange);
+                {
+                    if (Application.isPlaying)
+                        Gizmos.DrawWireSphere(startingPos + staticRangeOffset, patrolRange);
+                    else
+                        Gizmos.DrawWireSphere(transform.position + staticRangeOffset, patrolRange);
+                }
                 else
                     Gizmos.DrawWireSphere(transform.position + transform.forward * (patrolRange / 2), patrolRange);
 
@@ -528,7 +536,7 @@ public class AI_Brain : MonoBehaviour
 #region Editor
 #if UNITY_EDITOR
 
-[CustomEditor(typeof(AI_Brain))]
+[CustomEditor(typeof(AI_Brain)), CanEditMultipleObjects]
 public class AI_Brain_Editor : Editor
 {
     public override void OnInspectorGUI()
@@ -563,6 +571,9 @@ public class AI_Brain_Editor : Editor
                 script.patrolRange = EditorGUILayout.Slider("Patrol Range", script.patrolRange, 1f, 30f);
                 script.staticRange = EditorGUILayout.Toggle("Static Range", script.staticRange);
 
+                if (script.staticRange)
+                    script.staticRangeOffset = EditorGUILayout.Vector3Field("Static Range Offset", script.staticRangeOffset);
+
                 break;
             case AI_Brain.Type.MoveToPosition:
 
@@ -580,11 +591,14 @@ public class AI_Brain_Editor : Editor
         script.sightRange = EditorGUILayout.Slider("Sight Range", script.sightRange, 0.1f, 15f);
         script.sightAngle = EditorGUILayout.Slider("Sight Angle", script.sightAngle, 1f, 180f);
 
-        script.targetDeadzone = EditorGUILayout.Slider("Deadzone size", script.targetDeadzone, 0.1f, 10f);
+        script.targetDeadzone = EditorGUILayout.Slider("Deadzone size", script.targetDeadzone, 0f, 10f);
 
         EditorGUILayout.Space(10);
 
-        script.enableAbsoluteSightRange = EditorGUILayout.Toggle("Absolute Sight", script.enableAbsoluteSightRange);
+        if (script.sightAngle != 180f)
+            script.enableAbsoluteSightRange = EditorGUILayout.Toggle("Absolute Sight", script.enableAbsoluteSightRange);
+        else
+            script.enableAbsoluteSightRange = false;
 
         if (script.enableAbsoluteSightRange)
         {
