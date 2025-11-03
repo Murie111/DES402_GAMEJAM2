@@ -2,8 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-[DisallowMultipleComponent]
-[CanEditMultipleObjects]
+
 [RequireComponent(typeof(NavMeshAgent))]
 public class AI_Brain : MonoBehaviour
 {
