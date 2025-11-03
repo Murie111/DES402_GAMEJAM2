@@ -40,7 +40,7 @@ public class bobberScript : MonoBehaviour
             Invoke("hookedPlayer", 0.5f);
             currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
         }
-        if (other.CompareTag("FishDefault") && !mainBobber)
+        if (other.CompareTag("FishDefault") && !mainBobber && !loopCheck)
         {
             loopCheck = true;
             fishingScript.mainScript = false;
