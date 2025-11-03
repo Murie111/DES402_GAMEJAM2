@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class bobberScript : MonoBehaviour
 {
     public InputActionAsset InputActions;
+    public Text fishermanPointsText;
+    public int fishermanPoints;
+    public int fishPointsValue;
     public FishingPlayer fishingScript;
     public Slider catchMeter;
     public float fishingStruggle;
@@ -14,25 +17,34 @@ public class bobberScript : MonoBehaviour
     public bool catchingPlayer = false;
     private InputAction F_MoveAction;
     private Vector2 F_MoveAmt;
+    public bool mainBobber;
+    bool loopCheck = false;
+    bool canPress = true;
     private InputAction F_InteractAction;
 
     GameObject currentFish;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Pond"))
+        if (other.CompareTag("Pond") && mainBobber)
         {
             fishingScript.withinPondBounds = true;
             Debug.Log("within!");
         }
-        if (other.CompareTag("FishPlayer"))
+
+
+        if (other.CompareTag("FishPlayer") && !mainBobber && !loopCheck)
         {
-            Invoke("hookedPlayer", 1.5f);
+            loopCheck = true;
+            fishingScript.mainScript = false;
+            Invoke("hookedPlayer", 0.5f);
             currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
         }
-        if (other.CompareTag("FishDefault"))
+        if (other.CompareTag("FishDefault") && !mainBobber)
         {
-            Invoke("hookedDefault", 1.5f);
+            loopCheck = true;
+            fishingScript.mainScript = false;
+            Invoke("hookedDefault", 0.5f);
             currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
         }
     }
@@ -40,12 +52,10 @@ public class bobberScript : MonoBehaviour
     void hookedDefault()
     {
         catchingDefault = true;
-        fishingScript.mainScript = false;
     }
     void hookedPlayer()
     {
         catchingPlayer = true;
-        fishingScript.mainScript = false;
     }
     private void Start()
     {
@@ -54,17 +64,36 @@ public class bobberScript : MonoBehaviour
         timesPlayerFishHooked = 0;
     }
 
+
+
+    public void Mashing(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+
+        }
+    }
+
     private void FixedUpdate()
     {
-        if (!fishingScript.mainScript)
+        if (!fishingScript.mainScript && !mainBobber)
         {
-            if (catchingDefault)
+            if (catchingDefault && !catchingPlayer)
             {
                 catchMeterObj.SetActive(true);
-                catchMeter.value -= 0.001f;
+                catchMeter.value -= 0.005f;
                 if (F_InteractAction.IsPressed())
                 {
-                    catchMeter.value += 0.01f;
+                    if (canPress)
+                    {
+                        catchMeter.value += 0.1f;
+                        canPress = false;
+                    }
+                }
+                else
+                {
+                    Debug.Log("buttonReleased");
+                    canPress = true;
                 }
                 
                 if (catchMeter.value == 1f)
@@ -73,7 +102,7 @@ public class bobberScript : MonoBehaviour
                     catchMeterObj.SetActive(false);
                     //play catch animation
                     //add points
-                    //despawn fish
+                    currentFish.SetActive(false);
                     Invoke("caughtDefFish", 1f);
                 }
 
@@ -86,14 +115,24 @@ public class bobberScript : MonoBehaviour
 
             }
 
-            if (catchingPlayer)
+            if (catchingPlayer && !catchingDefault)
             {
                 catchMeterObj.SetActive(true);
                 calcFishStruggle();
+                Debug.Log(fishingStruggle);
                 catchMeter.value -= fishingStruggle;
                 if (F_InteractAction.IsPressed())
                 {
-                    catchMeter.value += 0.01f;
+                    if (canPress)
+                    {
+                        catchMeter.value += 0.1f;
+                        canPress = false;
+                    }
+                }
+                else
+                {
+                    Debug.Log("buttonReleased");
+                    canPress = true;
                 }
 
                 if (catchMeter.value == 1f)
@@ -108,7 +147,7 @@ public class bobberScript : MonoBehaviour
 
                 if (catchMeter.value == 0f)
                 {
-                    catchingDefault = false;
+                    catchingPlayer = false;
                     catchMeterObj.SetActive(false);
                     Invoke("failedPlayFish", 1f);
                 }
@@ -120,29 +159,35 @@ public class bobberScript : MonoBehaviour
     {
         if (timesPlayerFishHooked == 0)
         {
-            fishingStruggle = 0.085f;
+            fishingStruggle = 0.0125f;
         }
         if (timesPlayerFishHooked == 1)
         {
-            fishingStruggle = 0.0075f;
+            fishingStruggle = 0.01125f;
         }
         if (timesPlayerFishHooked == 2)
         {
-            fishingStruggle = 0.005f;
+            fishingStruggle = 0.01f;
         }
-        if (timesPlayerFishHooked <= 3)
+        if (timesPlayerFishHooked >= 3)
         {
-            fishingStruggle = 0.0025f;
+            fishingStruggle = 0.0075f;
         }
     }
     void caughtDefFish()
     {
+        loopCheck = false;
+        canPress = true;
         catchMeter.value = 0.5f; 
         fishingScript.mainScript = true;
+        fishermanPoints += fishPointsValue;
+        fishermanPointsText.text = ("" + fishermanPoints);
         fishingScript.ResetCast();
     }
     void failedDefFish()
     {
+        loopCheck = false;
+        canPress = true;
         catchMeter.value = 0.5f;
         fishingScript.mainScript = true;
         fishingScript.ResetCast();
@@ -150,6 +195,8 @@ public class bobberScript : MonoBehaviour
 
     void caughtPlayFish()
     {
+        loopCheck = false;
+        canPress = true;
         catchMeter.value = 0.5f;
         fishingScript.mainScript = true;
         fishingScript.ResetCast();
@@ -159,6 +206,8 @@ public class bobberScript : MonoBehaviour
 
     void failedPlayFish()
     {
+        loopCheck = false;
+        canPress = true;
         catchMeter.value = 0.5f;
         fishingScript.mainScript = true;
         fishingScript.ResetCast();

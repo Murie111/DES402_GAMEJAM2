@@ -23,6 +23,9 @@ public class FishingPlayer : MonoBehaviour
     private InputAction F_MoveAction;
     private Vector2 F_MoveAmt;
     private InputAction F_InteractAction;
+    public Text timerText;
+    public float timer = 0.0f;
+    public float startTime;
 
 
     void Start()
@@ -34,8 +37,26 @@ public class FishingPlayer : MonoBehaviour
         withinPondBounds = false;
         F_InteractAction = InputSystem.actions.FindAction("Interact2");
         F_MoveAction = InputSystem.actions.FindAction("Move2");
+        startGame();
     }
 
+    void startGame()
+    {
+        timer = startTime;
+    }
+
+    private void Update()
+    {
+        if (timer > 0.0f)
+        {
+            timer -= Time.deltaTime;
+            timerText.text = timer.ToString("0");
+        }
+        else
+        {
+            Debug.Log("Game Over!");
+        }
+    }
 
     void FixedUpdate()
     {
