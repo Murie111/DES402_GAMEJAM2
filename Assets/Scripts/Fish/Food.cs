@@ -21,7 +21,7 @@ public class Food : MonoBehaviour
     {
         if(other.CompareTag("Mouth"))
         {
-            gameManager.GetComponent<GameManager>().FishPoints += 1;
+            gameManager.GetComponent<GlobalManager>().increaseFishPoints();
             Destroy(gameObject);
         }
     }

@@ -5,9 +5,7 @@ using UnityEngine.UI;
 public class bobberScript : MonoBehaviour
 {
     public InputActionAsset InputActions;
-    public Text fishermanPointsText;
-    public int fishermanPoints;
-    public int fishPointsValue;
+    public GlobalManager gameManager;
     public FishingPlayer fishingScript;
     public Slider catchMeter;
     public float fishingStruggle;
@@ -180,8 +178,7 @@ public class bobberScript : MonoBehaviour
         canPress = true;
         catchMeter.value = 0.5f; 
         fishingScript.mainScript = true;
-        fishermanPoints += fishPointsValue;
-        fishermanPointsText.text = ("" + fishermanPoints);
+        gameManager.increaseFishermanPoints();
         fishingScript.ResetCast();
     }
     void failedDefFish()
