@@ -248,8 +248,12 @@ MonoBehaviour:
   Animations:
   - FishCatch
   - FishEscape
+  - MashEnter
+  - PlayerBite
+  - GameStart
   - GameOverIn
-  - GameOverLoop
+  - PlayerSnagged
+  resetNext: 0
   debugPlayer: 0
 --- !u!1 &8968902602420490024
 GameObject:

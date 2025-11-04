@@ -50,7 +50,7 @@ public class bobberScript : MonoBehaviour
             currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
 
 
-            spr_animators[1].PlayAnim(0);
+            spr_animators[1].PlayAnim(3);
         }
         if (other.CompareTag("FishDefault") && !mainBobber && !loopCheck)
         {

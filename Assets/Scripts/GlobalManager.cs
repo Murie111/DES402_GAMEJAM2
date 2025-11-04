@@ -40,11 +40,17 @@ public class GlobalManager : MonoBehaviour
     public GameObject drawM;
     public GameObject drawF;
 
+    [Space(10)]
+    [SerializeField] private Anims FisherSplash;
+    [SerializeField] private Anims FishSplash;
     private void Start()
     {
         timer = startTime;
         //  fishTutorial.SetActive(true);
         //  fishermanTutorial.SetActive(true);
+
+        FisherSplash.PlayAnim(4);
+        FishSplash.PlayAnim(4);
 
         Debug.Log("displays connected: " + Display.displays.Length);
         if (Display.displays.Length > 1)
@@ -57,11 +63,17 @@ public class GlobalManager : MonoBehaviour
 
         else
             Debug.Log("Miss");
+
+
     }
 
     void startCountdown()
     {
         //invokestartGame by animation seconds
+        FisherSplash.PlayAnim(4);
+        FishSplash.PlayAnim(4);
+
+
     }
     void startGame()
     {

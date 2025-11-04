@@ -8,11 +8,19 @@ public class Food : MonoBehaviour
     float currentLimit;
     bool isBonus = false;
     public GameObject gameManager;
+
+    private BoxCollider bc;
+    //[SerializeField] private SpriteRenderer bug;
+    [SerializeField] private MeshRenderer mr;
+    [SerializeField] private Anims biteThing;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameManager = GameObject.Find("GameManager");
         StartCoroutine(Death());
+
+        bc = GetComponent<BoxCollider>();
+        
     }
 
     private void Awake()
@@ -72,7 +80,17 @@ public class Food : MonoBehaviour
 
             }
 
-            Destroy(gameObject);
+            bc.enabled = false;
+            mr.enabled= false;
+            //bug.enabled = false;
+
+            biteThing.PlayAnim(Random.Range(0, 3));
+            Invoke("destroyFood", 1.5f);
         }
+    }
+
+    void destroyFood()
+    {
+        Destroy(gameObject);
     }
 }
