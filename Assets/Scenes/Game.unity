@@ -6829,7 +6829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &538860727
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14402,7 +14402,7 @@ RectTransform:
   m_Father: {fileID: 404722785}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -2.5, y: 0}
   m_SizeDelta: {x: 4.9999, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18776,7 +18776,8 @@ MonoBehaviour:
   catchingDefault: 0
   catchingPlayer: 0
   mainBobber: 1
-  splashSoundClip: []
+  splashSoundClip:
+  - {fileID: 8300000, guid: e730139abd7c570449221077057581b4, type: 3}
   spr_animators: []
 --- !u!65 &1479043711
 BoxCollider:
@@ -18814,7 +18815,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

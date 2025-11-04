@@ -26,6 +26,7 @@ public class bobberScript : MonoBehaviour
     [Space(10)]
     [SerializeField] private AudioClip[] splashSoundClip;
     private AudioSource audioSource;
+    //[SerializeField] private AudioClip reelSoundClip;
 
     //Array of the various animators called to throughout. Should be fisherman, pop up, then splash text.
     [SerializeField] private Anims[] spr_animators;
@@ -102,6 +103,9 @@ public class bobberScript : MonoBehaviour
                 {
                     audioLoopCheck = true;
                     //play sound with loop
+                    audioSource.clip = splashSoundClip[0];
+                    audioSource.Play();
+
                 }
                 //start reeling anim (default fish)
                 spr_animators[0].PlayAnim(2);
@@ -208,7 +212,7 @@ public class bobberScript : MonoBehaviour
     void caughtDefFish()
     {
         //stop sound
-        audioLoopCheck = false;
+        //audioLoopCheck = false;
         spr_animators[2].PlayAnim(0);
         spr_animators[1].PlayAnim(1);
 
@@ -225,7 +229,8 @@ public class bobberScript : MonoBehaviour
     void failedDefFish()
     {
         //stop sound
-        audioLoopCheck = false;
+        //audioLoopCheck = false;
+        //audioSource.Stop();
 
         spr_animators[2].PlayAnim(1);
         loopCheck = false;
