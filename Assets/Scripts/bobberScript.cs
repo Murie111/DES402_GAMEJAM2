@@ -20,10 +20,13 @@ public class bobberScript : MonoBehaviour
     bool loopCheck = false;
     bool canPress = true;
     private InputAction F_InteractAction;
+
+    [Space(10)]
     [SerializeField] private AudioClip[] splashSoundClip;
     private AudioSource audioSource;
-    
 
+    //Array of the various animators called to throughout. Should be fisherman, pop up, then splash text.
+    [SerializeField] private Anims[] spr_animators;
     GameObject currentFish;
 
     private void OnTriggerEnter(Collider other)
@@ -45,6 +48,9 @@ public class bobberScript : MonoBehaviour
             fishingScript.mainScript = false;
             Invoke("hookedPlayer", 0.5f);
             currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
+
+
+            spr_animators[1].PlayAnim(0);
         }
         if (other.CompareTag("FishDefault") && !mainBobber && !loopCheck)
         {
@@ -53,6 +59,7 @@ public class bobberScript : MonoBehaviour
             Invoke("hookedDefault", 0.5f);
             currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
             audioSource.PlayOneShot(splashSoundClip[0]);
+            spr_animators[1].PlayAnim(0);
         }
     }
 
@@ -90,6 +97,8 @@ public class bobberScript : MonoBehaviour
             if (catchingDefault && !catchingPlayer)
             {
                 //start reeling anim (default fish)
+                spr_animators[0].PlayAnim(2);
+
                 catchMeterObj.SetActive(true);
                 catchMeter.value -= 0.005f;
                 if (F_InteractAction.IsPressed())
@@ -110,7 +119,7 @@ public class bobberScript : MonoBehaviour
                 {
                     catchingDefault = false;
                     catchMeterObj.SetActive(false);
-                    //play catch animation
+
                     //add points
                     FishSpawner.Instance.ResetFish(currentFish);
                     Invoke("caughtDefFish", 1f);
@@ -121,6 +130,8 @@ public class bobberScript : MonoBehaviour
                     catchingDefault = false;
                     catchMeterObj.SetActive(false);
                     Invoke("failedDefFish", 1f);
+
+                    spr_animators[2].PlayAnim(1);
                 }
 
             }
@@ -128,6 +139,8 @@ public class bobberScript : MonoBehaviour
             if (catchingPlayer && !catchingDefault)
             {
                 //start reeling anim (player fish fish)
+
+
                 catchMeterObj.SetActive(true);
                 calcFishStruggle();
                 Debug.Log(fishingStruggle);
@@ -188,6 +201,9 @@ public class bobberScript : MonoBehaviour
     void caughtDefFish()
     {
         //caught default fish anim
+        spr_animators[2].PlayAnim(0);
+        spr_animators[1].PlayAnim(1);
+
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f; 
@@ -201,6 +217,8 @@ public class bobberScript : MonoBehaviour
     void failedDefFish()
     {
         //failed default fish anim
+        spr_animators[2].PlayAnim(1);
+
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f;
@@ -223,6 +241,8 @@ public class bobberScript : MonoBehaviour
     void failedPlayFish()
     {
         //failed player fish anim
+        spr_animators[2].PlayAnim(1);
+
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f;

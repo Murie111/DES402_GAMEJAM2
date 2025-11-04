@@ -44,6 +44,8 @@ public class Anims: MonoBehaviour
     public void PlayAnim(int animNum)
     {
         anim.Play(Animations[animNum]);
+
+        Debug.Log(Animations[animNum]);
     }
 
     public void UIProgress(int nextStep)

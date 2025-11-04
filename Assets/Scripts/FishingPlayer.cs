@@ -23,9 +23,12 @@ public class FishingPlayer : MonoBehaviour
     private InputAction F_MoveAction;
     private Vector2 F_MoveAmt;
     private InputAction F_InteractAction;
+
+    [Space(10)]
     [SerializeField] private AudioClip[] SoundClip;
     private AudioSource audioSource;
-
+    //Array of the various animators called to throughout. Should be fisherman, pop up, then splash text.
+    [SerializeField] private Anims[] spr_animators;
 
 
     void Start()
@@ -86,7 +89,9 @@ public class FishingPlayer : MonoBehaviour
 
             if (casting && !F_InteractAction.IsPressed())
             {
-                //casting anim here
+                //casting anim
+                spr_animators[0].PlayAnim(1);
+                
                 fishing = true;
                 casting = false;
                 audioSource.PlayOneShot(SoundClip[1]);
@@ -123,6 +128,7 @@ public class FishingPlayer : MonoBehaviour
     public void ResetCast()
     {
         //return to precast animation
+        spr_animators[0].PlayAnim(0);
         target.SetActive(true);
         fishingPower.value = 0f;
         bobber.transform.localPosition = new Vector3(0f, -0.4f, 0f);
