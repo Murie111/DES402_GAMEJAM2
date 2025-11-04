@@ -132,7 +132,7 @@ public class FishingPlayer : MonoBehaviour
         target.SetActive(true);
         fishingPower.value = 0f;
         bobber.transform.localPosition = new Vector3(0f, -0.4f, 0f);
-        target.transform.localPosition = new Vector3(0f, 0f, 0f);
+        target.transform.localPosition = new Vector3(0f, -0.32f, 0f);
         isIdle = true;
         Invoke("inputDelay", 0.25f);
         bobberBody.SetActive(false);
