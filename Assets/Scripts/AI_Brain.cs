@@ -432,7 +432,7 @@ public class AI_Brain : MonoBehaviour
 
     #region Gizmo
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (visionGizmo)
         {

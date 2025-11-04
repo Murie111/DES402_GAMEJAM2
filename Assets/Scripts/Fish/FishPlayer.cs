@@ -19,6 +19,10 @@ public class FishPlayer : MonoBehaviour
     private bool eating = false;
 
     public GameObject Mouth;
+
+    public Animator anim;
+    public Animator trackedAnim;
+
     private void OnEnable()
     {
         InputActions.FindActionMap("Fish").Enable();
@@ -80,5 +84,10 @@ public class FishPlayer : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDir, Vector3.up);
             F_Rigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime));
         }
-    }
+
+        bool moving = F_MoveAmt != Vector2.zero;
+
+        anim.SetBool("Moving", moving);
+        trackedAnim.SetBool("Moving", moving);  //this is so fucking stupid but i dont care its 3 fucking am and i am beyond tierd i just hope to god this works so i can go to sleep please
+    }   
 }

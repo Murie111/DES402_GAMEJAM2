@@ -111,7 +111,7 @@ public class bobberScript : MonoBehaviour
                     catchMeterObj.SetActive(false);
                     //play catch animation
                     //add points
-                    currentFish.SetActive(false);
+                    FishSpawner.Instance.ResetFish(currentFish);
                     Invoke("caughtDefFish", 1f);
                 }
 
