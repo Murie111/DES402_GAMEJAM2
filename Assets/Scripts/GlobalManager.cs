@@ -32,8 +32,9 @@ public class GlobalManager : MonoBehaviour
 
     private void Start()
     {
-      //  fishTutorial.SetActive(true);
-      //  fishermanTutorial.SetActive(true);
+        timer = startTime;
+        //  fishTutorial.SetActive(true);
+        //  fishermanTutorial.SetActive(true);
 
         Debug.Log("displays connected: " + Display.displays.Length);
         if (Display.displays.Length > 1)

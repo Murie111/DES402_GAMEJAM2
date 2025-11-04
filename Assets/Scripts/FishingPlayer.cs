@@ -55,11 +55,8 @@ public class FishingPlayer : MonoBehaviour
 
     void FixedUpdate()
     {
-
         if (mainScript)
         {
-            //F_MoveAmt = F_MoveAction.ReadValue<Vector2>();
-
             if (fishingPower.value <= 0)
             {
                 fishingBarUp = true;
@@ -72,6 +69,8 @@ public class FishingPlayer : MonoBehaviour
 
             if (!fishing)
             {
+                print(F_MoveAmt.x );
+
                 bobber.transform.Rotate(0f, 50 * (F_MoveAmt.x * Time.deltaTime), 0f);
             }
 
