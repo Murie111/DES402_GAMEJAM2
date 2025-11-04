@@ -38,6 +38,8 @@ public class FishSpawner : MonoBehaviour
 
     public void ResetFish(GameObject fish)
     {
+        fish.GetComponent<fishScale>().Scale();
+
         fish.transform.position = GetPosition();
     }
 
