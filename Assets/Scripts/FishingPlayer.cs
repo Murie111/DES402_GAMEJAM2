@@ -23,6 +23,8 @@ public class FishingPlayer : MonoBehaviour
     private InputAction F_MoveAction;
     private Vector2 F_MoveAmt;
     private InputAction F_InteractAction;
+    [SerializeField] private AudioClip[] SoundClip;
+    private AudioSource audioSource;
 
 
 
@@ -35,6 +37,8 @@ public class FishingPlayer : MonoBehaviour
         withinPondBounds = false;
         F_InteractAction = InputSystem.actions.FindAction("Interact2");
         F_MoveAction = InputSystem.actions.FindAction("Move2");
+
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -84,6 +88,7 @@ public class FishingPlayer : MonoBehaviour
             {
                 fishing = true;
                 casting = false;
+                audioSource.PlayOneShot(SoundClip[1]);
                 isIdle = false;
                 target.SetActive(false);
                 bobber.transform.position += (bobber.transform.forward * (fishingPower.value * 9.5f));
@@ -108,6 +113,9 @@ public class FishingPlayer : MonoBehaviour
         {
             bobberBody.SetActive(true);
             fishingPowerObj.SetActive(false);
+
+            //splash sound
+            audioSource.PlayOneShot(SoundClip[0]);
         }
         else 
         { 

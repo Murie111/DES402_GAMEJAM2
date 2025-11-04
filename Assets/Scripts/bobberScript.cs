@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -19,6 +20,9 @@ public class bobberScript : MonoBehaviour
     bool loopCheck = false;
     bool canPress = true;
     private InputAction F_InteractAction;
+    [SerializeField] private AudioClip[] splashSoundClip;
+    private AudioSource audioSource;
+    
 
     GameObject currentFish;
 
@@ -28,6 +32,10 @@ public class bobberScript : MonoBehaviour
         {
             fishingScript.withinPondBounds = true;
             Debug.Log("within!");
+            //play audio 
+
+            //audioSource.clip = spashSoundClip;
+            //audioSource.Play();
         }
 
 
@@ -44,6 +52,7 @@ public class bobberScript : MonoBehaviour
             fishingScript.mainScript = false;
             Invoke("hookedDefault", 0.5f);
             currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
+            audioSource.PlayOneShot(splashSoundClip[0]);
         }
     }
 
@@ -60,6 +69,8 @@ public class bobberScript : MonoBehaviour
         F_InteractAction = InputSystem.actions.FindAction("Interact2");
         F_MoveAction = InputSystem.actions.FindAction("Move2");
         timesPlayerFishHooked = 0;
+        
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -180,6 +191,9 @@ public class bobberScript : MonoBehaviour
         fishingScript.mainScript = true;
         gameManager.increaseFishermanPoints();
         fishingScript.ResetCast();
+        Debug.Log("method test");
+        audioSource.loop = false;
+        audioSource.Stop();
     }
     void failedDefFish()
     {
