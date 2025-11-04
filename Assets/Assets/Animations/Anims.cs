@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +11,11 @@ public class Anims: MonoBehaviour
 
     public string[] Animations;
     [Space(10)]
+    public int resetNext;
     public int debugPlayer;
+    
+
+    private bool resetbreak;
 
     //This just a really bog standard animation calling script
     //The names of the animations are stored on the public string tied to the game object
@@ -24,6 +29,7 @@ public class Anims: MonoBehaviour
     {
         anim = GetComponent<Animator>();
         debugPlayer = -1;
+        resetNext= 0;
     }
 
     private void FixedUpdate()
@@ -35,6 +41,15 @@ public class Anims: MonoBehaviour
                 PlayAnim(debugPlayer);
                 debugPlayer= -1;
             }
+        }
+
+        if (resetNext != 0 && !resetbreak)
+        {
+            //Allows for loop breaks to occur again via animations.       
+            anim.SetBool(String.Format("Next{0}",resetNext), false) ;
+                            
+            resetbreak= true;            
+            StartCoroutine(smallPause());                
         }
     }
 
@@ -59,5 +74,12 @@ public class Anims: MonoBehaviour
             anim.SetBool(String.Format("Next{0}", nextStep), true); 
         }
     }
+
+    IEnumerator smallPause()
+    {
+        yield return new WaitForSeconds(.3f);
+        resetbreak= false;
+    }
+   
 
 }
