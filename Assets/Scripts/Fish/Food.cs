@@ -83,7 +83,7 @@ public class Food : MonoBehaviour
             bc.enabled = false;
             mr.enabled= false;
             //bug.enabled = false;
-
+            //eat sound
             biteThing.PlayAnim(Random.Range(0, 3));
             Invoke("destroyFood", 1.5f);
         }

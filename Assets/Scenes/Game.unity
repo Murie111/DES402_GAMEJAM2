@@ -23185,7 +23185,7 @@ Transform:
   m_GameObject: {fileID: 1822950699}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.12252, y: -2.39, z: 8.04257}
+  m_LocalPosition: {x: 14.12252, y: -0.51, z: 8.04257}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27482,6 +27482,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 933572500}
     m_Modifications:
+    - target: {fileID: 462216492611016857, guid: 08fd11d218221e44093a8499f853451c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1302477300236479817, guid: 08fd11d218221e44093a8499f853451c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.31999993
@@ -27525,18 +27529,6 @@ PrefabInstance:
     - target: {fileID: 3991450088100747042, guid: 08fd11d218221e44093a8499f853451c, type: 3}
       propertyPath: m_Name
       value: Food
-      objectReference: {fileID: 0}
-    - target: {fileID: 6881055424712948028, guid: 08fd11d218221e44093a8499f853451c, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 6881055424712948028, guid: 08fd11d218221e44093a8499f853451c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 6881055424712948028, guid: 08fd11d218221e44093a8499f853451c, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

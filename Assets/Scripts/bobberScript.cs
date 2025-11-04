@@ -21,6 +21,8 @@ public class bobberScript : MonoBehaviour
     bool canPress = true;
     private InputAction F_InteractAction;
 
+    bool audioLoopCheck = false;
+
     [Space(10)]
     [SerializeField] private AudioClip[] splashSoundClip;
     private AudioSource audioSource;
@@ -96,6 +98,11 @@ public class bobberScript : MonoBehaviour
         {
             if (catchingDefault && !catchingPlayer)
             {
+                if (!audioLoopCheck)
+                {
+                    audioLoopCheck = true;
+                    //play sound with loop
+                }
                 //start reeling anim (default fish)
                 spr_animators[0].PlayAnim(2);
 
@@ -200,7 +207,8 @@ public class bobberScript : MonoBehaviour
     }
     void caughtDefFish()
     {
-        //caught default fish anim
+        //stop sound
+        audioLoopCheck = false;
         spr_animators[2].PlayAnim(0);
         spr_animators[1].PlayAnim(1);
 
@@ -216,9 +224,10 @@ public class bobberScript : MonoBehaviour
     }
     void failedDefFish()
     {
-        //failed default fish anim
-        spr_animators[2].PlayAnim(1);
+        //stop sound
+        audioLoopCheck = false;
 
+        spr_animators[2].PlayAnim(1);
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f;
