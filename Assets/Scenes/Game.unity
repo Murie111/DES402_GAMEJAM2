@@ -12140,7 +12140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &933572500
 Transform:
   m_ObjectHideFlags: 0
@@ -21540,6 +21540,7 @@ MonoBehaviour:
   Animations:
   - CatchMark
   - FishCaught
+  resetNext: 0
   debugPlayer: 0
 --- !u!1001 &1692561518
 PrefabInstance:

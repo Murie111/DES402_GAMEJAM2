@@ -61,12 +61,7 @@ public class GlobalManager : MonoBehaviour
 
     void startCountdown()
     {
-        Invoke("readyDisp", 0f);
-        Invoke("text3Disp", 1f);
-        Invoke("text2Disp", 2f);
-        Invoke("text1Disp", 3f);
-        Invoke("goDisp", 4f);
-        Invoke("startGame", 5f);
+        //invokestartGame by animation seconds
     }
     void startGame()
     {
