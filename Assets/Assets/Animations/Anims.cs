@@ -46,4 +46,16 @@ public class Anims: MonoBehaviour
         anim.Play(Animations[animNum]);
     }
 
+    public void UIProgress(int nextStep)
+    {
+        if(nextStep == 0)
+        {
+            anim.SetBool("Next1", true);
+        }
+        else
+        {
+            anim.SetBool(String.Format("Next{0}", nextStep), true); 
+        }
+    }
+
 }
