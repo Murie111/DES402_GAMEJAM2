@@ -992,7 +992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 599e1f84fad393b4083bb4b7b9502b9c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 599e1f84fad393b4083bb4b7b9502b9c, type: 3}
       propertyPath: m_Name
@@ -6007,7 +6007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &538860727
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8073,7 +8073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &750679566
 Transform:
   m_ObjectHideFlags: 0
@@ -12599,7 +12599,7 @@ RectTransform:
   m_Father: {fileID: 404722785}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -2.5, y: 0}
   m_SizeDelta: {x: 4.9999, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17609,7 +17609,7 @@ GameObject:
   - component: {fileID: 1561813197}
   m_Layer: 0
   m_Name: PLAYER FISH (TRACKED)
-  m_TagString: FishDefault
+  m_TagString: FishPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24851,7 +24851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  SwimSpeed: 5
+  SwimSpeed: 6.5
   RotateSpeed: 90
   Speed: 0
   Mouth: {fileID: 660596002}

@@ -35,7 +35,7 @@ public class FishPlayer : MonoBehaviour
 
     private void Start()
     {
-        Mouth = this.gameObject.transform.GetChild(1).gameObject;
+       // Mouth = this.gameObject.transform.GetChild(1).gameObject;
     }
     private void Awake()
     {

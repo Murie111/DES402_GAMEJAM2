@@ -89,6 +89,7 @@ public class bobberScript : MonoBehaviour
         {
             if (catchingDefault && !catchingPlayer)
             {
+                //start reeling anim (default fish)
                 catchMeterObj.SetActive(true);
                 catchMeter.value -= 0.005f;
                 if (F_InteractAction.IsPressed())
@@ -126,6 +127,7 @@ public class bobberScript : MonoBehaviour
 
             if (catchingPlayer && !catchingDefault)
             {
+                //start reeling anim (player fish fish)
                 catchMeterObj.SetActive(true);
                 calcFishStruggle();
                 Debug.Log(fishingStruggle);
@@ -185,6 +187,7 @@ public class bobberScript : MonoBehaviour
     }
     void caughtDefFish()
     {
+        //caught default fish anim
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f; 
@@ -197,6 +200,7 @@ public class bobberScript : MonoBehaviour
     }
     void failedDefFish()
     {
+        //failed default fish anim
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f;
@@ -206,6 +210,7 @@ public class bobberScript : MonoBehaviour
 
     void caughtPlayFish()
     {
+        //caught player fish anim
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f;
@@ -217,6 +222,7 @@ public class bobberScript : MonoBehaviour
 
     void failedPlayFish()
     {
+        //failed player fish anim
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f;

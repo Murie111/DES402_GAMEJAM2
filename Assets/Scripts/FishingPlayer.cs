@@ -86,6 +86,7 @@ public class FishingPlayer : MonoBehaviour
 
             if (casting && !F_InteractAction.IsPressed())
             {
+                //casting anim here
                 fishing = true;
                 casting = false;
                 audioSource.PlayOneShot(SoundClip[1]);
@@ -93,14 +94,6 @@ public class FishingPlayer : MonoBehaviour
                 target.SetActive(false);
                 bobber.transform.position += (bobber.transform.forward * (fishingPower.value * 9.5f));
                 Invoke("bobberCast", 1.5f);
-                //float bobberExp = fishingPower.value;
-                //float targetExpX = (MathF.Abs(MathF.Abs(target.position.x)-10));
-                //bobberExp = bobberExp * targetExpX;
-
-                //bobber.transform.position = Vector3.Lerp(transform.position, target.position, bobberExp);
-
-                //bobber.transform.position = new Vector3(bobberNewX, bobberY, bobberZ);
-                //Invoke("ResetCast", 1f);
             }
         }
     }
@@ -114,11 +107,11 @@ public class FishingPlayer : MonoBehaviour
             bobberBody.SetActive(true);
             fishingPowerObj.SetActive(false);
 
-            //splash sound
             audioSource.PlayOneShot(SoundClip[0]);
         }
         else 
         { 
+            //this would be the failed cast anim, but itll play the return to precast soooo idk
             ResetCast();
         }
     }
@@ -129,6 +122,7 @@ public class FishingPlayer : MonoBehaviour
     }
     public void ResetCast()
     {
+        //return to precast animation
         target.SetActive(true);
         fishingPower.value = 0f;
         bobber.transform.localPosition = new Vector3(0f, -0.4f, 0f);
@@ -149,19 +143,3 @@ public class FishingPlayer : MonoBehaviour
         InputActions.FindActionMap("Fisher").Disable();
     }
 }
-//float playerZ = transform.position.z;
-//float bobberBuffer = fishingPower.value;
-//float bobberAngle = MathF.Atan2((target.position.z - transform.position.z), target.position.x);
-//Debug.Log(bobberAngle);
-//float bobberZ = playerZ + (9 * bobberBuffer);
-//float bobberNewX = bobberZ * MathF.Cos(bobberAngle);
-// float bobberNewZ = bobberZ * MathF.Cos(bobberAngle);
-//float bobberNewX = MathF.Cos(bobberAngle);
-//float bobberNewY = MathF.Sin(bobberAngle);
-//bobberNewX = bobberNewX * bobberZ;
-//bobberNewY = bobberNewY * bobberZ;
-//bobberNewX = bobberNewX / 20;
-//Debug.Log(bobberNewX);
-//float bobberX = target.position.x;
-//float bobberY = bobber.transform.position.y;
-//bobber.transform.rotation = Quaternion.Euler(0f, bobberAngle, 0f);
