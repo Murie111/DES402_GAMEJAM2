@@ -23,6 +23,7 @@ public class GlobalManager : MonoBehaviour
 
     public bool fishReady;
     public bool fishermanReady;
+    bool gameDone = false;
 
     public GameObject readyText;
     public GameObject text3;
@@ -65,10 +66,12 @@ public class GlobalManager : MonoBehaviour
         Invoke("text2Disp", 2f);
         Invoke("text1Disp", 3f);
         Invoke("goDisp", 4f);
+        Invoke("startGame", 5f);
     }
     void startGame()
     {
         timer = startTime;
+        goText.SetActive(false);
     }
     void Update()
     {
@@ -79,16 +82,17 @@ public class GlobalManager : MonoBehaviour
 
 
 
-        if (timer > 0.0f)
+        if (timer > 0.0f && !gameDone)
         {
             timer -= Time.deltaTime;
             timerTextFish.text = timer.ToString("0");
             timerTextFisherman.text = timer.ToString("0");
         }
-        else
+        else if (!gameDone)
         {
+            gameDone = true;
             Debug.Log("Game Over!");
-            pickWinner();
+            Invoke("pickWinner", 1f);
         }
     }
 
