@@ -43,7 +43,13 @@ public class GlobalManager : MonoBehaviour
 
     public void increaseFishPoints()
     {
-        fishPoints += fishermanPointsIncrease;
+        fishPoints += fishPointsIncrease;
+        fishPointsText.text = ("" + fishPoints);
+        fishPointsTextOpp.text = ("" + fishPoints);
+    }
+    public void increaseFishPointsBonus()
+    {
+        fishPoints += fishPointsIncrease * 2;
         fishPointsText.text = ("" + fishPoints);
         fishPointsTextOpp.text = ("" + fishPoints);
     }
