@@ -1,14 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class FishPlayer : MonoBehaviour
 {
-    public InputActionAsset InputActions;
-
-    private InputAction F_MoveAction;
-    private InputAction F_InteractAction;
-
     private Vector2 F_MoveAmt;
     private Rigidbody F_Rigidbody;
 
@@ -23,35 +19,34 @@ public class FishPlayer : MonoBehaviour
     public Animator anim;
     public Animator trackedAnim;
 
-    private void OnEnable()
+    private PlayerInput input;
+
+    public void Move(CallbackContext context)
     {
-        InputActions.FindActionMap("Fish").Enable();
+        if (input.playerIndex != 1)
+            return;
+
+        F_MoveAmt = context.ReadValue<Vector2>();
     }
 
-    private void OnDisable()
+    public void Fish(CallbackContext context)
     {
-        InputActions.FindActionMap("Fish").Disable();
-    }
+        if (input.playerIndex != 1)
+            return;
 
-    private void Awake()
-    {
-        F_MoveAction = InputSystem.actions.FindAction("Move");
-        F_InteractAction = InputSystem.actions.FindAction("Interact");
-
-        F_Rigidbody = GetComponent<Rigidbody>();
-    }
-
-    void Update()
-    {
-        F_MoveAmt = F_MoveAction.ReadValue<Vector2>();
-
-        if (F_InteractAction.WasPressedThisFrame())
+        if (context.phase == InputActionPhase.Performed)
         {
             if (!eating)
             {
                 StartCoroutine(Eat());
             }
         }
+    }
+
+    private void Awake()
+    {
+        F_Rigidbody = GetComponent<Rigidbody>();
+        input = GetComponent<PlayerInput>();
     }
 
     IEnumerator Eat()

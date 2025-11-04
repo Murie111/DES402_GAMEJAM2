@@ -1,8 +1,7 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEngine.InputSystem.InputAction;
 
 public class FishingPlayer : MonoBehaviour
 {
@@ -20,9 +19,10 @@ public class FishingPlayer : MonoBehaviour
     public Rigidbody bobberRb;
     public bool withinPondBounds;
     bool fishingBarUp;
-    private InputAction F_MoveAction;
     private Vector2 F_MoveAmt;
-    private InputAction F_InteractAction;
+    private CallbackContext F_InteractAction;
+
+    private PlayerInput input;
 
     [Space(10)]
     [SerializeField] private AudioClip[] SoundClip;
@@ -30,6 +30,15 @@ public class FishingPlayer : MonoBehaviour
     //Array of the various animators called to throughout. Should be fisherman, pop up, then splash text.
     [SerializeField] private Anims[] spr_animators;
 
+    public void Move(CallbackContext context)
+    {
+        F_MoveAmt = context.ReadValue<Vector2>();
+    }
+
+    public void Interact(CallbackContext context)
+    {
+        F_InteractAction = context;
+    }
 
     void Start()
     {
@@ -38,18 +47,18 @@ public class FishingPlayer : MonoBehaviour
         casting = false;
         fishing = false;
         withinPondBounds = false;
-        F_InteractAction = InputSystem.actions.FindAction("Interact2");
-        F_MoveAction = InputSystem.actions.FindAction("Move2");
 
         audioSource = GetComponent<AudioSource>();
+        input = GetComponent<PlayerInput>();
     }
 
 
     void FixedUpdate()
     {
+
         if (mainScript)
         {
-            F_MoveAmt = F_MoveAction.ReadValue<Vector2>();
+            //F_MoveAmt = F_MoveAction.ReadValue<Vector2>();
 
             if (fishingPower.value <= 0)
             {
@@ -66,7 +75,7 @@ public class FishingPlayer : MonoBehaviour
                 bobber.transform.Rotate(0f, 50 * (F_MoveAmt.x * Time.deltaTime), 0f);
             }
 
-            if (isIdle = F_InteractAction.IsPressed() && !fishing)
+            if (isIdle = F_InteractAction.phase == InputActionPhase.Performed && !fishing)
             {
                 fishingPowerObj.SetActive(true);    
                 casting = true;
@@ -82,12 +91,12 @@ public class FishingPlayer : MonoBehaviour
                 }
             }
 
-            if (F_InteractAction.IsPressed() && fishing && !casting)
+            if (F_InteractAction.phase == InputActionPhase.Performed && fishing && !casting)
             {
                 ResetCast();
             }
 
-            if (casting && !F_InteractAction.IsPressed())
+            if (casting && F_InteractAction.phase != InputActionPhase.Performed)
             {
                 //casting anim
                 spr_animators[0].PlayAnim(1);
