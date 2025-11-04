@@ -23,7 +23,7 @@ public class FishPlayer : MonoBehaviour
 
     public void Move(CallbackContext context)
     {
-        if (input.playerIndex != 0)
+        if (input.playerIndex != 1)
             return;
 
         F_MoveAmt = context.ReadValue<Vector2>();
@@ -31,7 +31,7 @@ public class FishPlayer : MonoBehaviour
 
     public void Fish(CallbackContext context)
     {
-        if (input.playerIndex != 0)
+        if (input.playerIndex != 1)
             return;
 
         if (context.phase == InputActionPhase.Performed)
