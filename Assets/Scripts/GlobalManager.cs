@@ -30,6 +30,15 @@ public class GlobalManager : MonoBehaviour
     public GameObject text1;
     public GameObject goText;
 
+    public GameObject fishermanCatchM;
+    public GameObject fishermanCatchF;
+    public GameObject fishermanPointsM;
+    public GameObject fishermanPointsF;
+    public GameObject fishPointsM;
+    public GameObject fishPointsF;
+    public GameObject drawM;
+    public GameObject drawF;
+
     private void Start()
     {
         timer = startTime;
@@ -79,6 +88,26 @@ public class GlobalManager : MonoBehaviour
         else
         {
             Debug.Log("Game Over!");
+            pickWinner();
+        }
+    }
+
+    void pickWinner()
+    {
+        if (fishPoints == fishermanPoints)
+        {
+            drawF.SetActive(true);
+            drawM.SetActive(true);
+        }
+        if (fishPoints > fishermanPoints)
+        {
+            fishPointsF.SetActive(true);
+            fishPointsM.SetActive(true);
+        }
+        if (fishPoints < fishermanPoints)
+        {
+            fishermanPointsF.SetActive(true);
+            fishermanPointsM.SetActive(true);
         }
     }
 

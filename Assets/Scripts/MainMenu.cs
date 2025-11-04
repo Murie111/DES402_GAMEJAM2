@@ -9,9 +9,13 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    
+    public void exitGame()
+    {
+        Application.Quit();
+    }
+
     public void startGame()
     {
-       // SceneManager.SetActiveScene("Game");
+        SceneManager.LoadScene("Game");
     }
 }
