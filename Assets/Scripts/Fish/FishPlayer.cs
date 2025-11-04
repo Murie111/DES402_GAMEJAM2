@@ -33,10 +33,6 @@ public class FishPlayer : MonoBehaviour
         InputActions.FindActionMap("Fish").Disable();
     }
 
-    private void Start()
-    {
-       // Mouth = this.gameObject.transform.GetChild(1).gameObject;
-    }
     private void Awake()
     {
         F_MoveAction = InputSystem.actions.FindAction("Move");

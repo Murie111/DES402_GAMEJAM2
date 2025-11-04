@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water
+  m_Name: Pond
   m_Shader: {fileID: -6465566751694194690, guid: d9be20e5d4ac04a7f8c7bfd1c4330a4f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -65,10 +65,10 @@ Material:
     - _Intersection_Foam_Speed: 0
     - _Intersection_Foam_Tiling: 1
     - _Lighting_Hardness: 1
-    - _Lighting_Smoothness: 0.558
-    - _Normals_Scale: 0.1143
-    - _Normals_Speed: 0.0662
-    - _Normals_Strength: 0.603
+    - _Lighting_Smoothness: 0.703
+    - _Normals_Scale: 0.2
+    - _Normals_Speed: 0.151
+    - _Normals_Strength: 1
     - _QueueControl: 1
     - _QueueOffset: 0
     - _Refraction_Scale: 0.054
@@ -86,7 +86,7 @@ Material:
     - _Wave_Length: 2.8
     - _Wave_Speed: 0.57
     - _Wave_Steepness: 0
-    - _transparency: 0.8
+    - _transparency: 0.22
     m_Colors:
     - _Deep_Color: {r: 0, g: 0.3187065, b: 0.6132076, a: 1}
     - _Diffuse_Color: {r: 1, g: 0, b: 0, a: 1}
