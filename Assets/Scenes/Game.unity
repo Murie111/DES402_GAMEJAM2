@@ -6478,7 +6478,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 120
 --- !u!222 &448082316
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8285,6 +8285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishingPower: {fileID: 1174930576}
   fishingPowerObj: {fileID: 1174930575}
+  globalManager: {fileID: 1789282612}
   mainScript: 0
   fillSpeed: 1
   bobber: {fileID: 1479043704}
@@ -8527,8 +8528,8 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 3da7fe48-dfa7-41ce-b773-c87b3c71ea92
-    m_ActionName: 'read/Fish Controller Active[/DualSenseGamepadHID/buttonNorth,/XInputControllerWindows1/buttonNorth]'
+    m_ActionId: f95ea478-00c4-4a28-bb03-854f9be843f3
+    m_ActionName: 'read/Controller Active[/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Fisher
@@ -9365,7 +9366,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 120
 --- !u!222 &685375498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25235,7 +25236,7 @@ MonoBehaviour:
   fishermanPointsText: {fileID: 147879098}
   fishPointsTextOpp: {fileID: 197061504}
   fishermanPointsTextOpp: {fileID: 1720821748}
-  timer: 0
+  timer: 999
   startTime: 120
   fishPointsIncrease: 4
   fishermanPointsIncrease: 10
@@ -25245,6 +25246,7 @@ MonoBehaviour:
   fishermanTutorial: {fileID: 0}
   fishReady: 0
   fishermanReady: 0
+  gameInProg: 0
   readyText: {fileID: 0}
   text3: {fileID: 0}
   text2: {fileID: 0}
@@ -30904,6 +30906,7 @@ MonoBehaviour:
   catchMeter: {fileID: 103839893}
   fisherCatchMeter: {fileID: 1263510507}
   bobberScript: {fileID: 1963205929}
+  globalManager: {fileID: 1789282612}
   SwimSpeed: 6.5
   RotateSpeed: 90
   Speed: 0
@@ -31052,8 +31055,8 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 3da7fe48-dfa7-41ce-b773-c87b3c71ea92
-    m_ActionName: 'read/Fish Controller Active[/DualSenseGamepadHID/buttonNorth,/XInputControllerWindows1/buttonNorth]'
+    m_ActionId: f95ea478-00c4-4a28-bb03-854f9be843f3
+    m_ActionName: 'read/Controller Active[/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Fish

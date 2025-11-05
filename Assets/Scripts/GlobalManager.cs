@@ -25,6 +25,8 @@ public class GlobalManager : MonoBehaviour
     public bool fishermanReady;
     bool gameDone = false;
 
+    public bool gameInProg = false;
+
     public GameObject readyText;
     public GameObject text3;
     public GameObject text2;
@@ -40,6 +42,7 @@ public class GlobalManager : MonoBehaviour
     public GameObject drawM;
     public GameObject drawF;
 
+    bool timerRunning = false;
     [Space(10)]
     [SerializeField] private Anims FisherSplash;
     [SerializeField] private Anims FishSplash;
@@ -67,12 +70,13 @@ public class GlobalManager : MonoBehaviour
         FisherSplash.PlayAnim(4);
         FishSplash.PlayAnim(4);
 
-        Invoke("startGame", 5f);
+        Invoke("startGame", 5.5f);
     }
     void startGame()
     {
-        timer = startTime;
-        goText.SetActive(false);      
+        timerRunning = true;
+        gameInProg = true;
+
     }
     void Update()
     {
@@ -83,13 +87,13 @@ public class GlobalManager : MonoBehaviour
 
 
 
-        if (timer > 0.0f && !gameDone)
+        if (timer > 0.0f && !gameDone && timerRunning)
         {
             timer -= Time.deltaTime;
             timerTextFish.text = timer.ToString("0");
             timerTextFisherman.text = timer.ToString("0");
         }
-        else if (!gameDone)
+        else if (!gameDone && timerRunning)
         {
             gameDone = true;
             Debug.Log("Game Over!");
@@ -99,6 +103,7 @@ public class GlobalManager : MonoBehaviour
 
     public void catchWinner()
     {
+        gameInProg = false;
         fishermanCatchF.gameObject.SetActive(true);
         fishermanCatchM.gameObject.SetActive(true);
         timer += 999;
@@ -106,6 +111,7 @@ public class GlobalManager : MonoBehaviour
 
     void pickWinner()
     {
+        gameInProg = false;
         if (fishPoints == fishermanPoints)
         {
             drawF.SetActive(true);

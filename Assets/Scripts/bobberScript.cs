@@ -77,7 +77,7 @@ public class bobberScript : MonoBehaviour
         bobberDuplicate.SetActive(false);
         loopCheck = true;
         fishingScript.mainScript = false;
-        Invoke("hookedPlayer", 0.5f);
+        Invoke("hookedPlayer", 2.5f);
         spr_animators[2].PlayAnim(3);
         Invoke("playMashAnim", 2f);
     }
@@ -131,8 +131,8 @@ public class bobberScript : MonoBehaviour
             if (catchingDefault && !catchingPlayer)
             {
                 //start reeling anim (default fish)
-                spr_animators[0].PlayAnim(2);
-                spr_animators[3].PlayAnim(1);
+                spr_animators[0].PlayAnim(2);//reeling in
+                spr_animators[3].PlayAnim(1);//fish thrash
                 
                 catchMeterObj.SetActive(true);
                 catchMeter.value -= 0.003f;
@@ -161,6 +161,8 @@ public class bobberScript : MonoBehaviour
 
             if (catchingPlayer && !catchingDefault)
             {
+                spr_animators[0].PlayAnim(2);//reeling in
+                spr_animators[3].PlayAnim(1);//fish thrash
                 //start reeling anim (player fish fish)
                 catchMeterObj.SetActive(true);
                 if (catchMeter.value == 1f)

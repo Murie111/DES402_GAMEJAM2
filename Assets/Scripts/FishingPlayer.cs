@@ -7,6 +7,7 @@ public class FishingPlayer : MonoBehaviour
 {
     public Slider fishingPower;
     public GameObject fishingPowerObj;
+    public GlobalManager globalManager;
     public bool mainScript;
     bool isIdle;
     bool casting;
@@ -80,7 +81,7 @@ public class FishingPlayer : MonoBehaviour
                 bobber.transform.Rotate(0f, 50 * (F_MoveAmt.x * Time.deltaTime), 0f);
             }
 
-            if (isIdle = F_InteractAction.phase == InputActionPhase.Performed && !fishing)
+            if (isIdle = F_InteractAction.phase == InputActionPhase.Performed && !fishing && globalManager.gameInProg)
             {
                 fishingPowerObj.SetActive(true);    
                 casting = true;
@@ -96,12 +97,12 @@ public class FishingPlayer : MonoBehaviour
                 }
             }
 
-            if (F_InteractAction.phase == InputActionPhase.Started && fishing && !casting)
+            if (F_InteractAction.phase == InputActionPhase.Started && fishing && !casting && globalManager.gameInProg)
             {
                 ResetCast();
             }
 
-            if (casting && F_InteractAction.phase != InputActionPhase.Performed)
+            if (casting && F_InteractAction.phase != InputActionPhase.Performed && globalManager.gameInProg)
             {
                 //casting anim
                 spr_animators[0].PlayAnim(1);

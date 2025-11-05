@@ -16,6 +16,7 @@ public class FishPlayer : MonoBehaviour
     float fishingIncrease;
     int timesPlayerFishHooked = 0;
     public bobberScript bobberScript;
+    public GlobalManager globalManager;
 
     private Vector2 F_MoveAmt;
     private Rigidbody F_Rigidbody;
@@ -119,7 +120,7 @@ public class FishPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isBeingReeled && !startingGame)
+        if (!isBeingReeled && globalManager.gameInProg)
         {
             Swimming();
         }
