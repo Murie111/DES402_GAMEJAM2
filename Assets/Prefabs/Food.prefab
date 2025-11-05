@@ -62,8 +62,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   mr: {fileID: 2960020356799230956}
   biteThing: {fileID: 4568517506228587928}
-  SoundClip:
-  - {fileID: 8300000, guid: 72dfd7d93f2883149bff90620ba9c729, type: 3}
+  audioSource: {fileID: 3156429745460000347}
 --- !u!65 &6633104082682017619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95,7 +94,7 @@ Rigidbody:
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0.35
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -123,9 +122,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 72dfd7d93f2883149bff90620ba9c729, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0

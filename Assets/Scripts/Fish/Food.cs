@@ -13,8 +13,7 @@ public class Food : MonoBehaviour
     //[SerializeField] private SpriteRenderer bug;
     [SerializeField] private MeshRenderer mr;
     [SerializeField] private Anims biteThing;
-    [SerializeField] private AudioClip[] SoundClip;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,7 +21,6 @@ public class Food : MonoBehaviour
         StartCoroutine(Death());
 
         bc = GetComponent<BoxCollider>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void Awake()
@@ -85,7 +83,7 @@ public class Food : MonoBehaviour
             mr.enabled= false;
             //bug.enabled = false;
             //eat sound
-            audioSource.PlayOneShot(SoundClip[0]);
+            audioSource.Play();
             biteThing.PlayAnim(Random.Range(0, 3));
             Invoke("destroyFood", 1.5f);
         }

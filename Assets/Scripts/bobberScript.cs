@@ -21,6 +21,7 @@ public class bobberScript : MonoBehaviour
     bool canPress = true;
     private InputAction F_InteractAction;
 
+    public AudioSource reelSound;
 
     public FishPlayer fishPlayer;
     public GameObject bobberDuplicate;
@@ -85,9 +86,11 @@ public class bobberScript : MonoBehaviour
     void hookedDefault()
     {
         catchingDefault = true;
+        reelSound.Play();
     }
     void hookedPlayer()
     {
+        reelSound.Play();
         catchingPlayer = true;
         gameManager.timerRunning = false;
     }
@@ -132,6 +135,7 @@ public class bobberScript : MonoBehaviour
                 //start reeling anim (default fish)
                 spr_animators[0].PlayAnim(2);//reeling in
                 spr_animators[3].PlayAnim(1);//fish thrash
+                
                 
                 catchMeterObj.SetActive(true);
                 catchMeter.value -= 0.002f;
@@ -220,7 +224,7 @@ public class bobberScript : MonoBehaviour
         //caught default fish anim
         spr_animators[2].PlayAnim(0);
         spr_animators[1].PlayAnim(1);
-
+        reelSound.Stop();
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f; 
@@ -233,6 +237,7 @@ public class bobberScript : MonoBehaviour
     }
     void failedDefFish()
     {
+        reelSound.Stop();
         //failed default fish anim
         spr_animators[2].PlayAnim(1);
 
@@ -245,6 +250,7 @@ public class bobberScript : MonoBehaviour
 
     void caughtPlayFish()
     {
+        reelSound.Stop();
         //caught player fish anim
         loopCheck = false;
         canPress = true;
@@ -258,6 +264,7 @@ public class bobberScript : MonoBehaviour
 
     void failedPlayFish()
     {
+        reelSound.Stop();
         //failed player fish anim
         spr_animators[2].PlayAnim(1);
         gameManager.timerRunning = true;

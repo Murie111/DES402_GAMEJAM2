@@ -20924,6 +20924,7 @@ MonoBehaviour:
   catchingDefault: 0
   catchingPlayer: 0
   mainBobber: 1
+  reelSound: {fileID: 0}
   fishPlayer: {fileID: 0}
   bobberDuplicate: {fileID: 0}
   splashSoundClip:
@@ -20967,7 +20968,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -27344,6 +27345,7 @@ MonoBehaviour:
   catchingDefault: 0
   catchingPlayer: 0
   mainBobber: 0
+  reelSound: {fileID: 1963205932}
   fishPlayer: {fileID: 9072694570460893984}
   bobberDuplicate: {fileID: 1822950699}
   splashSoundClip:
@@ -27440,11 +27442,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: e730139abd7c570449221077057581b4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
