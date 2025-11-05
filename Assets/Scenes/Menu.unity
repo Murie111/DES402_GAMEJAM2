@@ -2625,7 +2625,6 @@ MonoBehaviour:
   fishermancontrollerSprite:
   - {fileID: 828687621}
   - {fileID: 1675570117}
-  delay: 1
 --- !u!1 &1549946042
 GameObject:
   m_ObjectHideFlags: 0
@@ -3055,7 +3054,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ----CONTINUE----
+  m_Text: --CONTINUE--
 --- !u!222 &1619016630
 CanvasRenderer:
   m_ObjectHideFlags: 0
