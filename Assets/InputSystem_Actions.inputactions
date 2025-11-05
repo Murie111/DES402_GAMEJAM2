@@ -966,9 +966,9 @@
             "id": "6a0e40e1-4623-444b-bfc4-ac7f2f0f5a45",
             "actions": [
                 {
-                    "name": "Fish Controller Active",
-                    "type": "Button",
-                    "id": "3da7fe48-dfa7-41ce-b773-c87b3c71ea92",
+                    "name": "Controller Active",
+                    "type": "PassThrough",
+                    "id": "f95ea478-00c4-4a28-bb03-854f9be843f3",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -978,23 +978,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "b4a5136f-83b8-49c9-9b19-17e7c4b8ae35",
+                    "id": "ed2ab1be-b831-4776-9e81-b97590105aa1",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Fish Controller Active",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2650f78a-680e-4c11-b8cf-820be42b9ff3",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
                     "groups": "",
-                    "action": "Fish Controller Active",
+                    "action": "Controller Active",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
