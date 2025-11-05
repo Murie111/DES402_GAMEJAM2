@@ -96,11 +96,13 @@ public class bobberScript : MonoBehaviour
 
     public void Mashing(InputAction.CallbackContext context)
     {
+
         if (context.phase == InputActionPhase.Started)
         {
             if (catchingPlayer)
             {
-              //  catchMeter.value += 0.1f;
+                catchMeter.value += 0.05f;
+                fishPlayer.decreaseBar();
             }
 
         }
@@ -122,7 +124,7 @@ public class bobberScript : MonoBehaviour
                 {
                     if (canPress)
                     {
-                        catchMeter.value += 0.1f;
+                        //catchMeter.value += 0.1f;
                         canPress = false;
                     }
                 }
@@ -168,8 +170,7 @@ public class bobberScript : MonoBehaviour
                 {
                     if (canPress)
                     {
-                        catchMeter.value += 0.05f;
-                        fishPlayer.decreaseBar();
+                        //catchMeter.value += 0.05f;
                         canPress = false;
                     }
                 }

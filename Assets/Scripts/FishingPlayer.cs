@@ -96,7 +96,7 @@ public class FishingPlayer : MonoBehaviour
                 }
             }
 
-            if (F_InteractAction.phase == InputActionPhase.Performed && fishing && !casting)
+            if (F_InteractAction.phase == InputActionPhase.Started && fishing && !casting)
             {
                 ResetCast();
             }

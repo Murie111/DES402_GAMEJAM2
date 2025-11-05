@@ -74,8 +74,8 @@ public class FishPlayer : MonoBehaviour
         Mouth.SetActive(false);
         eating = false;
     }
+    
     void increaseBar()
-
     {
         calcFishStruggle();
         catchMeter.value += fishingIncrease;
