@@ -120,6 +120,19 @@ public class FishPlayer : MonoBehaviour
         if (isBeingReeled)
         {
             catchMeterObj.SetActive(true);
+            if (catchMeter.value == 1f)
+            {
+                isBeingReeled = false;
+                catchMeterObj.SetActive(false);
+                //escaped!
+            }
+
+            if (catchMeter.value == 0f)
+            {
+
+                catchMeterObj.SetActive(false);
+                //end game
+            }
         }
     }
 
