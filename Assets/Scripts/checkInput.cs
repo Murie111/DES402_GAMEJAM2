@@ -16,8 +16,6 @@ public class checkInput : MonoBehaviour
 
     void CheckIfReady(int id)
     {
-        print(id);
-
         if (id == 0)
         {
             fishActive = !fishActive;
