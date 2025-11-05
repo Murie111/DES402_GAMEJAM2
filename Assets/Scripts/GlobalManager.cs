@@ -98,6 +98,13 @@ public class GlobalManager : MonoBehaviour
         }
     }
 
+    public void catchWinner()
+    {
+        fishermanCatchF.gameObject.SetActive(true);
+        fishermanCatchM.gameObject.SetActive(true);
+        timer += 999;
+    }
+
     void pickWinner()
     {
         if (fishPoints == fishermanPoints)

@@ -9,6 +9,7 @@ public class FishPlayer : MonoBehaviour
 
     public bool isBeingReeled;
     public bool startingGame;
+    public bool isBattling;
     public GameObject catchMeterObj;
     public Slider catchMeter;
     public Slider fisherCatchMeter;
@@ -79,16 +80,23 @@ public class FishPlayer : MonoBehaviour
     {
         calcFishStruggle();
         catchMeter.value += fishingIncrease;
-        fisherCatchMeter.value -= fishingIncrease;
+        bobberScript.decreaseBar(fishingIncrease);
     }
 
     public void decreaseBar()
     {
         catchMeter.value -= 0.05f;
-
     }
 
+    public void FishPlayerBite()
+    {
+        Invoke("startBattle",0.5f);
+    }
 
+    public void startBattle()
+    {
+        isBattling = true;
+    }
 
     void calcFishStruggle()
     {
@@ -98,16 +106,13 @@ public class FishPlayer : MonoBehaviour
         }
         if (timesPlayerFishHooked == 1)
         {
-            fishingIncrease = 0.075f;
-        }
-        if (timesPlayerFishHooked == 2)
-        {
             fishingIncrease = 0.05f;
         }
-        if (timesPlayerFishHooked >= 3)
+        if (timesPlayerFishHooked >= 2)
         {
             fishingIncrease = 0.025f;
         }
+
     }
 
 
@@ -117,23 +122,34 @@ public class FishPlayer : MonoBehaviour
         {
             Swimming();
         }
-        if (isBeingReeled)
+        if (isBattling)
         {
             catchMeterObj.SetActive(true);
             if (catchMeter.value == 1f)
             {
                 isBeingReeled = false;
+                isBattling = false;
                 catchMeterObj.SetActive(false);
-                //escaped!
+                catchMeter.value = 0.5f;
+                bobberScript.fisherLoseBattle();
+                timesPlayerFishHooked += 1;
             }
 
             if (catchMeter.value == 0f)
             {
-
+                isBeingReeled = false;
+                isBattling = false;
                 catchMeterObj.SetActive(false);
-                //end game
+                catchMeter.value = 0.5f;
+                //should end game
+                Debug.Log("fish caught!");
             }
         }
+    }
+
+    public void playSnaggedAnim()
+    {
+        //play snagged text
     }
 
     private void Swimming()

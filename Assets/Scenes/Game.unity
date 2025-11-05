@@ -4109,7 +4109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishPrefab: {fileID: 394530974220962280, guid: f12f6076efe0ddf49b4f9f527d1a6166, type: 3}
-  StartingNum: 0
+  StartingNum: 5
   range: 3.48
 --- !u!1001 &300428809
 PrefabInstance:
@@ -25236,8 +25236,8 @@ MonoBehaviour:
   fishPointsTextOpp: {fileID: 197061504}
   fishermanPointsTextOpp: {fileID: 1720821748}
   timer: 0
-  startTime: 999
-  fishPointsIncrease: 5
+  startTime: 120
+  fishPointsIncrease: 4
   fishermanPointsIncrease: 10
   fishPoints: 0
   fishermanPoints: 0
@@ -30899,6 +30899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBeingReeled: 0
   startingGame: 0
+  isBattling: 0
   catchMeterObj: {fileID: 103839891}
   catchMeter: {fileID: 103839893}
   fisherCatchMeter: {fileID: 1263510507}

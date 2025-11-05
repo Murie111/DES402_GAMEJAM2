@@ -12,7 +12,9 @@ public class FakeFood : MonoBehaviour
             //audioSource.Play();
             Debug.Log("hooked!");
             //logic for fish biting food
+            fishPlayer.FishPlayerBite();
             fishPlayer.isBeingReeled = true;
+            fishPlayer.playSnaggedAnim();
             playerBobber.FishPlayerBite();
         }
     }

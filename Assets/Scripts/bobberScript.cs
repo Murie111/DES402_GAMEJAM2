@@ -21,6 +21,7 @@ public class bobberScript : MonoBehaviour
     bool canPress = true;
     private InputAction F_InteractAction;
 
+
     public FishPlayer fishPlayer;
     public GameObject bobberDuplicate;
     
@@ -66,6 +67,11 @@ public class bobberScript : MonoBehaviour
         }
     }
 
+    public void decreaseBar(float fishingStruggle)
+    {
+        catchMeter.value -= fishingStruggle;
+    }
+
     public void FishPlayerBite()
     {
         bobberDuplicate.SetActive(false);
@@ -104,6 +110,10 @@ public class bobberScript : MonoBehaviour
                 catchMeter.value += 0.05f;
                 fishPlayer.decreaseBar();
             }
+            if (catchingDefault)
+            {
+                catchMeter.value += 0.05f;
+            }
 
         }
     }
@@ -119,26 +129,12 @@ public class bobberScript : MonoBehaviour
                 spr_animators[3].PlayAnim(1);
                 
                 catchMeterObj.SetActive(true);
-                catchMeter.value -= 0.005f;
-                if (F_InteractAction.IsPressed())
-                {
-                    if (canPress)
-                    {
-                        //catchMeter.value += 0.1f;
-                        canPress = false;
-                    }
-                }
-                else
-                {
-                    Debug.Log("buttonReleased");
-                    canPress = true;
-                }
-                
-                if (catchMeter.value == 1f)
+                catchMeter.value -= 0.003f;
+
+                if (catchMeter.value >= 0.99f)
                 {
                     catchingDefault = false;
                     catchMeterObj.SetActive(false);
-
                     //add points
                     spr_animators[2].UIProgress(2);
                     spr_animators[3].PlayAnim(0);
@@ -152,9 +148,7 @@ public class bobberScript : MonoBehaviour
                     spr_animators[2].UIProgress(2);
                     catchingDefault = false;
                     catchMeterObj.SetActive(false);
-                    Invoke("failedDefFish", 1f);
-
-                    
+                    Invoke("failedDefFish", 1f);  
                 }
 
             }
@@ -162,24 +156,7 @@ public class bobberScript : MonoBehaviour
             if (catchingPlayer && !catchingDefault)
             {
                 //start reeling anim (player fish fish)
-
-
                 catchMeterObj.SetActive(true);
-
-                if (F_InteractAction.IsPressed())
-                {
-                    if (canPress)
-                    {
-                        //catchMeter.value += 0.05f;
-                        canPress = false;
-                    }
-                }
-                else
-                {
-                    Debug.Log("buttonReleased");
-                    canPress = true;
-                }
-
                 if (catchMeter.value == 1f)
                 {
                     catchingPlayer = false;
@@ -198,6 +175,13 @@ public class bobberScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void fisherLoseBattle()
+    {
+        catchingPlayer = false;
+        catchMeterObj.SetActive(false);
+        Invoke("failedPlayFish", 1f);
     }
 
 
@@ -257,6 +241,7 @@ public class bobberScript : MonoBehaviour
         catchMeter.value = 0.5f;
         fishingScript.mainScript = true;
         fishingScript.ResetCast();
+        gameManager.catchWinner();
         //winner!
         //yipee
     }
@@ -271,6 +256,5 @@ public class bobberScript : MonoBehaviour
         catchMeter.value = 0.5f;
         fishingScript.mainScript = true;
         fishingScript.ResetCast();
-        timesPlayerFishHooked += 1;
     }
 }

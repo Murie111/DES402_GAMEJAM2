@@ -27,7 +27,7 @@ public class Food : MonoBehaviour
 
     private void Awake()
     {
-        int randomCheck = Random.Range(0, 11);
+        int randomCheck = Random.Range(1, 11);
         if (randomCheck == 10)
         {
             Debug.Log("bonus!");
@@ -44,7 +44,7 @@ public class Food : MonoBehaviour
     {
         if (growing)
         {
-            transform.localScale = new Vector3(transform.localScale.x + Time.deltaTime, transform.localScale.y + Time.deltaTime, transform.localScale.z + Time.deltaTime);
+            transform.localScale = new Vector3(transform.localScale.x + (Time.deltaTime / 3), transform.localScale.y + (Time.deltaTime / 3), transform.localScale.z + (Time.deltaTime / 3));
             if (transform.localScale.x >= currentLimit)
             {
                 growing = false;
@@ -53,7 +53,7 @@ public class Food : MonoBehaviour
 
         if (shrinking)
         {
-            transform.localScale = new Vector3(transform.localScale.x - Time.deltaTime, transform.localScale.y - Time.deltaTime, transform.localScale.z - Time.deltaTime);
+            transform.localScale = new Vector3(transform.localScale.x - (Time.deltaTime / 3), transform.localScale.y - (Time.deltaTime / 3), transform.localScale.z - (Time.deltaTime / 3));
             if (transform.localScale.x <= 0)
             {
                 Destroy(gameObject);
@@ -86,7 +86,6 @@ public class Food : MonoBehaviour
             //bug.enabled = false;
             //eat sound
             audioSource.PlayOneShot(SoundClip[0]);
-
             biteThing.PlayAnim(Random.Range(0, 3));
             Invoke("destroyFood", 1.5f);
         }

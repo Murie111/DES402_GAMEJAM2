@@ -15,7 +15,7 @@ public class PondSpawning : MonoBehaviour
     IEnumerator Spawn()
     {
         Spawning = true;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         CreateStuffOnRoad();
         Spawning = false;
     }
