@@ -5,7 +5,6 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class FishingPlayer : MonoBehaviour
 {
-    public InputActionAsset InputActions;
     public Slider fishingPower;
     public GameObject fishingPowerObj;
     public bool mainScript;
@@ -44,8 +43,6 @@ public class FishingPlayer : MonoBehaviour
 
     void Start()
     {
-        InputActions.Disable();
-
         bobberDuplicate.SetActive(false);
 
         mainScript = true;
@@ -156,15 +153,5 @@ public class FishingPlayer : MonoBehaviour
         bobberDuplicate.SetActive(false);
         
         withinPondBounds = false;
-    }
-
-    private void OnEnable()
-    {
-        InputActions.FindActionMap("Fisher").Enable();
-    }
-
-    private void OnDisable()
-    {
-        InputActions.FindActionMap("Fisher").Disable();
     }
 }
