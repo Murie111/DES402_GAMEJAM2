@@ -21,12 +21,9 @@ public class bobberScript : MonoBehaviour
     bool canPress = true;
     private InputAction F_InteractAction;
 
-    bool audioLoopCheck = false;
-
     [Space(10)]
     [SerializeField] private AudioClip[] splashSoundClip;
     private AudioSource audioSource;
-    //[SerializeField] private AudioClip reelSoundClip;
 
     //Array of the various animators called to throughout. Should be fisherman, pop up, then splash text.
     [SerializeField] private Anims[] spr_animators;
@@ -53,7 +50,7 @@ public class bobberScript : MonoBehaviour
             currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
 
 
-            spr_animators[1].PlayAnim(3);
+            spr_animators[2].PlayAnim(3);
         }
         if (other.CompareTag("FishDefault") && !mainBobber && !loopCheck)
         {
@@ -99,14 +96,6 @@ public class bobberScript : MonoBehaviour
         {
             if (catchingDefault && !catchingPlayer)
             {
-                if (!audioLoopCheck)
-                {
-                    audioLoopCheck = true;
-                    //play sound with loop
-                    audioSource.clip = splashSoundClip[0];
-                    audioSource.Play();
-
-                }
                 //start reeling anim (default fish)
                 spr_animators[0].PlayAnim(2);
 
@@ -211,8 +200,7 @@ public class bobberScript : MonoBehaviour
     }
     void caughtDefFish()
     {
-        //stop sound
-        //audioLoopCheck = false;
+        //caught default fish anim
         spr_animators[2].PlayAnim(0);
         spr_animators[1].PlayAnim(1);
 
@@ -228,11 +216,9 @@ public class bobberScript : MonoBehaviour
     }
     void failedDefFish()
     {
-        //stop sound
-        //audioLoopCheck = false;
-        //audioSource.Stop();
-
+        //failed default fish anim
         spr_animators[2].PlayAnim(1);
+
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f;

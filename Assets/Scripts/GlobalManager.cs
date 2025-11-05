@@ -52,19 +52,14 @@ public class GlobalManager : MonoBehaviour
         FisherSplash.PlayAnim(4);
         FishSplash.PlayAnim(4);
 
-        Debug.Log("displays connected: " + Display.displays.Length);
-        if (Display.displays.Length > 1)
-        {
-            Display.displays[1].Activate();
-            Display.displays[1].SetParams(1024,512, 2, 1);
-            Screen.SetResolution(1024, 512, true);
-            Application.targetFrameRate = 60;
-        }
-
-        else
-            Debug.Log("Miss");
-
-
+        // Debug.Log("displays connected: " + Display.displays.Length);
+        // if (Display.displays.Length > 1)
+        // {
+        //     Display.displays[1].Activate();
+        //     Display.displays[1].SetParams(1024,512, 2, 1);
+        //     Screen.SetResolution(1024, 512, true);
+        //     Application.targetFrameRate = 60;
+        // }
     }
 
     void startCountdown()

@@ -28,7 +28,6 @@ public class Food : MonoBehaviour
     private void Awake()
     {
         int randomCheck = Random.Range(0, 11);
-        Debug.Log(randomCheck);
         if (randomCheck == 10)
         {
             Debug.Log("bonus!");

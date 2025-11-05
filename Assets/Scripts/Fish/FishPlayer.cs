@@ -23,8 +23,10 @@ public class FishPlayer : MonoBehaviour
 
     public void Move(CallbackContext context)
     {
-        if (input.playerIndex != 1)
-            return;
+        print("aa " + input.playerIndex);
+
+        // if (input.playerIndex != 1)
+        //     return;
 
         F_MoveAmt = context.ReadValue<Vector2>();
     }

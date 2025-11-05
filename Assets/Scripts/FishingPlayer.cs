@@ -14,6 +14,7 @@ public class FishingPlayer : MonoBehaviour
     bool fishing;
     public float fillSpeed;
     public GameObject bobber;
+    public GameObject bobberDuplicate;
     public GameObject target;
     public GameObject bobberBody;
     public Rigidbody bobberRb;
@@ -23,6 +24,7 @@ public class FishingPlayer : MonoBehaviour
     private CallbackContext F_InteractAction;
 
     private PlayerInput input;
+    public int inputID = -1;
 
     [Space(10)]
     [SerializeField] private AudioClip[] SoundClip;
@@ -42,6 +44,10 @@ public class FishingPlayer : MonoBehaviour
 
     void Start()
     {
+        InputActions.Disable();
+
+        bobberDuplicate.SetActive(false);
+
         mainScript = true;
         isIdle = true;
         casting = false;
@@ -69,8 +75,6 @@ public class FishingPlayer : MonoBehaviour
 
             if (!fishing)
             {
-                print(F_MoveAmt.x );
-
                 bobber.transform.Rotate(0f, 50 * (F_MoveAmt.x * Time.deltaTime), 0f);
             }
 
@@ -118,6 +122,7 @@ public class FishingPlayer : MonoBehaviour
         if (withinPondBounds)
         {
             bobberBody.SetActive(true);
+            bobberDuplicate.SetActive(true);
             fishingPowerObj.SetActive(false);
 
             audioSource.PlayOneShot(SoundClip[0]);
@@ -137,13 +142,19 @@ public class FishingPlayer : MonoBehaviour
     {
         //return to precast animation
         spr_animators[0].PlayAnim(0);
+
         target.SetActive(true);
         fishingPower.value = 0f;
+
         bobber.transform.localPosition = new Vector3(0f, -0.4f, 0f);
         target.transform.localPosition = new Vector3(0f, -0.32f, 0f);
+
         isIdle = true;
         Invoke("inputDelay", 0.25f);
+
         bobberBody.SetActive(false);
+        bobberDuplicate.SetActive(false);
+        
         withinPondBounds = false;
     }
 
