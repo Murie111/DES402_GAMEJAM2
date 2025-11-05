@@ -32,6 +32,7 @@ public class FishPlayer : MonoBehaviour
     public Animator trackedAnim;
 
     private PlayerInput input;
+    [SerializeField] Anims spr_splash;
 
     public void Move(CallbackContext context)
     {
@@ -90,7 +91,7 @@ public class FishPlayer : MonoBehaviour
 
     public void FishPlayerBite()
     {
-        Invoke("startBattle",0.5f);
+        Invoke("startBattle",2.5f);
     }
 
     public void startBattle()
@@ -127,6 +128,9 @@ public class FishPlayer : MonoBehaviour
             catchMeterObj.SetActive(true);
             if (catchMeter.value == 1f)
             {
+                //copy here
+                spr_splash.UIProgress(2);
+                
                 isBeingReeled = false;
                 isBattling = false;
                 catchMeterObj.SetActive(false);
@@ -137,6 +141,10 @@ public class FishPlayer : MonoBehaviour
 
             if (catchMeter.value == 0f)
             {
+                //Copy here
+                spr_splash.UIProgress(2);
+                
+                spr_splash.PlayAnim(5);
                 isBeingReeled = false;
                 isBattling = false;
                 catchMeterObj.SetActive(false);
@@ -149,9 +157,14 @@ public class FishPlayer : MonoBehaviour
 
     public void playSnaggedAnim()
     {
-        //play snagged text
+        //Copy here (Change the number to 4?
+        spr_splash.PlayAnim(6);
+        Invoke("playMashAnim", 2f);
     }
-
+    void playMashAnim()
+    {
+        spr_splash.PlayAnim(2);
+    }
     private void Swimming()
     {
         Speed = Mathf.Max(Mathf.Abs(F_MoveAmt.x), Mathf.Abs(F_MoveAmt.y));

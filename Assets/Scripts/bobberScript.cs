@@ -79,6 +79,7 @@ public class bobberScript : MonoBehaviour
         fishingScript.mainScript = false;
         Invoke("hookedPlayer", 0.5f);
         spr_animators[2].PlayAnim(3);
+        Invoke("playMashAnim", 2f);
     }
 
     void hookedDefault()
@@ -88,6 +89,7 @@ public class bobberScript : MonoBehaviour
     void hookedPlayer()
     {
         catchingPlayer = true;
+
     }
     private void Start()
     {
@@ -98,6 +100,10 @@ public class bobberScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    void playMashAnim()
+    {
+        spr_animators[2].PlayAnim(2);
+    }
 
 
     public void Mashing(InputAction.CallbackContext context)
@@ -159,6 +165,7 @@ public class bobberScript : MonoBehaviour
                 catchMeterObj.SetActive(true);
                 if (catchMeter.value == 1f)
                 {
+                    spr_animators[2].UIProgress(2);
                     catchingPlayer = false;
                     catchMeterObj.SetActive(false);
                     //play catch animation
@@ -169,6 +176,8 @@ public class bobberScript : MonoBehaviour
 
                 if (catchMeter.value == 0f)
                 {
+                    spr_animators[2].UIProgress(2);
+                    spr_animators[2].PlayAnim(1);
                     catchingPlayer = false;
                     catchMeterObj.SetActive(false);
                     Invoke("failedPlayFish", 1f);

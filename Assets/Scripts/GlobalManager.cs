@@ -49,8 +49,7 @@ public class GlobalManager : MonoBehaviour
         //  fishTutorial.SetActive(true);
         //  fishermanTutorial.SetActive(true);
 
-        FisherSplash.PlayAnim(4);
-        FishSplash.PlayAnim(4);
+        Invoke("startCountdown", .2f);
 
         // Debug.Log("displays connected: " + Display.displays.Length);
         // if (Display.displays.Length > 1)
@@ -68,12 +67,12 @@ public class GlobalManager : MonoBehaviour
         FisherSplash.PlayAnim(4);
         FishSplash.PlayAnim(4);
 
-
+        Invoke("startGame", 5f);
     }
     void startGame()
     {
         timer = startTime;
-        goText.SetActive(false);
+        goText.SetActive(false);      
     }
     void Update()
     {
