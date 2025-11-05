@@ -14,10 +14,10 @@ public class checkInput : MonoBehaviour
     bool fishActive;
     bool playerActive;
 
-    public float delay;
-
     void CheckIfReady(int id)
     {
+        print(id);
+
         if (id == 0)
         {
             fishActive = !fishActive;
@@ -38,14 +38,14 @@ public class checkInput : MonoBehaviour
         {
             playerActive = !playerActive;
 
-            if (fishActive)
+            if (playerActive)
             {
-                foreach (var i in fishcontrollerSprite)
+                foreach (var i in fishermancontrollerSprite)
                     i.color = Color.green;
             }
             else
             {
-                foreach (var i in fishcontrollerSprite)
+                foreach (var i in fishermancontrollerSprite)
                     i.color = Color.red;
             }
         }
@@ -56,7 +56,7 @@ public class checkInput : MonoBehaviour
 
     IEnumerator DelayToStart()
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(0.5f);
 
         readyEvent.Invoke();
     }
