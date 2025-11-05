@@ -104,7 +104,7 @@ public class FishPlayer : MonoBehaviour
     {
         if (timesPlayerFishHooked == 0)
         {
-            fishingIncrease = 0.1f;
+            fishingIncrease = 0.075f;
         }
         if (timesPlayerFishHooked == 1)
         {
@@ -112,7 +112,7 @@ public class FishPlayer : MonoBehaviour
         }
         if (timesPlayerFishHooked >= 2)
         {
-            fishingIncrease = 0.025f;
+            fishingIncrease = 0.035f;
         }
 
     }
@@ -155,6 +155,7 @@ public class FishPlayer : MonoBehaviour
             }
         }
     }
+
 
     public void playSnaggedAnim()
     {

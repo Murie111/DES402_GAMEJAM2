@@ -89,7 +89,7 @@ public class bobberScript : MonoBehaviour
     void hookedPlayer()
     {
         catchingPlayer = true;
-
+        gameManager.timerRunning = false;
     }
     private void Start()
     {
@@ -104,7 +104,6 @@ public class bobberScript : MonoBehaviour
     {
         spr_animators[2].PlayAnim(2);
     }
-
 
     public void Mashing(InputAction.CallbackContext context)
     {
@@ -135,7 +134,7 @@ public class bobberScript : MonoBehaviour
                 spr_animators[3].PlayAnim(1);//fish thrash
                 
                 catchMeterObj.SetActive(true);
-                catchMeter.value -= 0.003f;
+                catchMeter.value -= 0.002f;
 
                 if (catchMeter.value >= 0.99f)
                 {
@@ -261,7 +260,7 @@ public class bobberScript : MonoBehaviour
     {
         //failed player fish anim
         spr_animators[2].PlayAnim(1);
-
+        gameManager.timerRunning = true;
         loopCheck = false;
         canPress = true;
         catchMeter.value = 0.5f;

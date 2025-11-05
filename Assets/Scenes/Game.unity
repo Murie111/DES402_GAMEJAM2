@@ -25230,6 +25230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae50475dbc843e429f0fa5c046ba25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishPlayer: {fileID: 0}
   timerTextFish: {fileID: 448082315}
   timerTextFisherman: {fileID: 685375497}
   fishPointsText: {fileID: 364332404}
@@ -25260,6 +25261,7 @@ MonoBehaviour:
   fishPointsF: {fileID: 794170054}
   drawM: {fileID: 2114189019}
   drawF: {fileID: 1414595787}
+  timerRunning: 0
   FisherSplash: {fileID: 1630072887}
   FishSplash: {fileID: 1364035249}
 --- !u!114 &1789282613

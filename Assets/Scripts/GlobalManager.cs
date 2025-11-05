@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class GlobalManager : MonoBehaviour
 {
-
+    public FishPlayer fishPlayer;
     public Text timerTextFish;
     public Text timerTextFisherman;
     public Text fishPointsText;
@@ -42,7 +43,7 @@ public class GlobalManager : MonoBehaviour
     public GameObject drawM;
     public GameObject drawF;
 
-    bool timerRunning = false;
+    public bool timerRunning = false;
     [Space(10)]
     [SerializeField] private Anims FisherSplash;
     [SerializeField] private Anims FishSplash;
@@ -95,9 +96,12 @@ public class GlobalManager : MonoBehaviour
         }
         else if (!gameDone && timerRunning)
         {
-            gameDone = true;
+            gameInProg = false;
             Debug.Log("Game Over!");
-            Invoke("pickWinner", 1f);
+            FisherSplash.PlayAnim(5);
+            FishSplash.PlayAnim(5);
+            Invoke("pickWinner", 5f);
+            Invoke("mainMenu", 15f);
         }
     }
 
@@ -107,6 +111,11 @@ public class GlobalManager : MonoBehaviour
         fishermanCatchF.gameObject.SetActive(true);
         fishermanCatchM.gameObject.SetActive(true);
         timer += 999;
+    }
+
+    void mainMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     void pickWinner()
