@@ -27,7 +27,7 @@ public class Food : MonoBehaviour
 
     private void Awake()
     {
-        int randomCheck = Random.Range(1, 11);
+        int randomCheck = Random.Range(0, 11);
         if (randomCheck == 10)
         {
             Debug.Log("bonus!");
@@ -63,7 +63,7 @@ public class Food : MonoBehaviour
 
     IEnumerator Death()
     {
-        yield return new WaitForSeconds(25);
+        yield return new WaitForSeconds(20);
         shrinking = true;
     }
  

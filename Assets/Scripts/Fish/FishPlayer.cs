@@ -56,7 +56,7 @@ public class FishPlayer : MonoBehaviour
             {
                 StartCoroutine(Eat());
             }
-            if (isBeingReeled) 
+            if (isBeingReeled && isBattling) 
             {
                 increaseBar();
             }

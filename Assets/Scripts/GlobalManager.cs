@@ -111,6 +111,7 @@ public class GlobalManager : MonoBehaviour
         fishermanCatchF.gameObject.SetActive(true);
         fishermanCatchM.gameObject.SetActive(true);
         timer += 999;
+        Invoke("mainMenu", 10f);
     }
 
     void mainMenu()
