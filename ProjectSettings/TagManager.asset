@@ -9,6 +9,7 @@ TagManager:
   - Pond
   - FishDefault
   - FishPlayer
+  - BobberFood
   layers:
   - Default
   - TransparentFX

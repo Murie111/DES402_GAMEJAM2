@@ -1,10 +1,21 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
 public class FishPlayer : MonoBehaviour
 {
+
+    public bool isBeingReeled;
+    public bool startingGame;
+    public GameObject catchMeterObj;
+    public Slider catchMeter;
+    public Slider fisherCatchMeter;
+    float fishingIncrease;
+    int timesPlayerFishHooked = 0;
+    public bobberScript bobberScript;
+
     private Vector2 F_MoveAmt;
     private Rigidbody F_Rigidbody;
 
@@ -23,7 +34,7 @@ public class FishPlayer : MonoBehaviour
 
     public void Move(CallbackContext context)
     {
-        print("aa " + input.playerIndex);
+        //print("aa " + input.playerIndex);
 
         // if (input.playerIndex != 1)
         //     return;
@@ -36,11 +47,15 @@ public class FishPlayer : MonoBehaviour
         if (input.playerIndex != 1)
             return;
 
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Started)
         {
-            if (!eating)
+            if (!eating && !isBeingReeled)
             {
                 StartCoroutine(Eat());
+            }
+            if (isBeingReeled) 
+            {
+                increaseBar();
             }
         }
     }
@@ -59,10 +74,53 @@ public class FishPlayer : MonoBehaviour
         Mouth.SetActive(false);
         eating = false;
     }
+    void increaseBar()
+
+    {
+        calcFishStruggle();
+        catchMeter.value += fishingIncrease;
+        fisherCatchMeter.value -= fishingIncrease;
+    }
+
+    public void decreaseBar()
+    {
+        catchMeter.value -= 0.05f;
+
+    }
+
+
+
+    void calcFishStruggle()
+    {
+        if (timesPlayerFishHooked == 0)
+        {
+            fishingIncrease = 0.1f;
+        }
+        if (timesPlayerFishHooked == 1)
+        {
+            fishingIncrease = 0.075f;
+        }
+        if (timesPlayerFishHooked == 2)
+        {
+            fishingIncrease = 0.05f;
+        }
+        if (timesPlayerFishHooked >= 3)
+        {
+            fishingIncrease = 0.025f;
+        }
+    }
+
 
     private void FixedUpdate()
     {
-        Swimming();
+        if (!isBeingReeled && !startingGame)
+        {
+            Swimming();
+        }
+        if (isBeingReeled)
+        {
+            catchMeterObj.SetActive(true);
+        }
     }
 
     private void Swimming()
@@ -82,5 +140,6 @@ public class FishPlayer : MonoBehaviour
 
         anim.SetBool("Moving", moving);
         trackedAnim.SetBool("Moving", moving);  //this is so fucking stupid but i dont care its 3 fucking am and i am beyond tierd i just hope to god this works so i can go to sleep please
-    }   
+
+    }
 }

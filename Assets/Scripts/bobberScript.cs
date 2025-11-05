@@ -21,6 +21,8 @@ public class bobberScript : MonoBehaviour
     bool canPress = true;
     private InputAction F_InteractAction;
 
+    public FishPlayer fishPlayer;
+    public GameObject bobberDuplicate;
     
 
     [Space(10)] 
@@ -46,16 +48,13 @@ public class bobberScript : MonoBehaviour
 
         if (other.CompareTag("FishPlayer") && !mainBobber && !loopCheck)
         {
-            loopCheck = true;
-            fishingScript.mainScript = false;
-            Invoke("hookedPlayer", 0.5f);
-            currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
-            spr_animators[2].PlayAnim(3);
+
 
             
         }
         if (other.CompareTag("FishDefault") && !mainBobber && !loopCheck)
         {
+            bobberDuplicate.SetActive(false);
             loopCheck = true;
             fishingScript.mainScript = false;
             Invoke("hookedDefault", 0.5f);
@@ -65,6 +64,15 @@ public class bobberScript : MonoBehaviour
             spr_animators[1].PlayAnim(0);       
             spr_animators[2].PlayAnim(2);
         }
+    }
+
+    public void FishPlayerBite()
+    {
+        bobberDuplicate.SetActive(false);
+        loopCheck = true;
+        fishingScript.mainScript = false;
+        Invoke("hookedPlayer", 0.5f);
+        spr_animators[2].PlayAnim(3);
     }
 
     void hookedDefault()
@@ -88,8 +96,12 @@ public class bobberScript : MonoBehaviour
 
     public void Mashing(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.phase == InputActionPhase.Started)
         {
+            if (catchingPlayer)
+            {
+              //  catchMeter.value += 0.1f;
+            }
 
         }
     }
@@ -151,14 +163,13 @@ public class bobberScript : MonoBehaviour
 
 
                 catchMeterObj.SetActive(true);
-                calcFishStruggle();
-                Debug.Log(fishingStruggle);
-                catchMeter.value -= fishingStruggle;
+
                 if (F_InteractAction.IsPressed())
                 {
                     if (canPress)
                     {
-                        catchMeter.value += 0.1f;
+                        catchMeter.value += 0.05f;
+                        fishPlayer.decreaseBar();
                         canPress = false;
                     }
                 }
@@ -187,6 +198,8 @@ public class bobberScript : MonoBehaviour
             }
         }
     }
+
+
 
     void calcFishStruggle()
     {
