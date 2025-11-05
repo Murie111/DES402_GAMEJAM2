@@ -16,6 +16,8 @@ public class FishingPlayer : MonoBehaviour
     public GameObject bobberDuplicate;
     public GameObject target;
     public GameObject bobberBody;
+    private SpriteRenderer bobberSprite; 
+
     public Rigidbody bobberRb;
     public bool withinPondBounds;
     bool fishingBarUp;
@@ -30,6 +32,7 @@ public class FishingPlayer : MonoBehaviour
     private AudioSource audioSource;
     //Array of the various animators called to throughout. Should be fisherman, pop up, then splash text.
     [SerializeField] private Anims[] spr_animators;
+    [SerializeField] private SpriteRenderer AimArrow;
 
     public void Move(CallbackContext context)
     {
@@ -44,6 +47,8 @@ public class FishingPlayer : MonoBehaviour
     void Start()
     {
         bobberDuplicate.SetActive(false);
+        bobberSprite = bobberBody.GetComponent<SpriteRenderer>();
+        bobberSprite.enabled= false;
 
         mainScript = true;
         isIdle = true;
@@ -100,7 +105,7 @@ public class FishingPlayer : MonoBehaviour
             {
                 //casting anim
                 spr_animators[0].PlayAnim(1);
-                
+                AimArrow.enabled = false;
                 fishing = true;
                 casting = false;
                 audioSource.PlayOneShot(SoundClip[1]);
@@ -119,6 +124,9 @@ public class FishingPlayer : MonoBehaviour
         if (withinPondBounds)
         {
             bobberBody.SetActive(true);
+            bobberSprite.enabled= false;
+            Invoke("bobberToggle", .5f);
+            spr_animators[3].PlayAnim(0);
             bobberDuplicate.SetActive(true);
             fishingPowerObj.SetActive(false);
 
@@ -130,7 +138,10 @@ public class FishingPlayer : MonoBehaviour
             ResetCast();
         }
     }
-
+    void bobberToggle()
+    {
+        bobberSprite.enabled = true;
+    }
     void inputDelay()
     {
         fishing = false;
@@ -139,7 +150,7 @@ public class FishingPlayer : MonoBehaviour
     {
         //return to precast animation
         spr_animators[0].PlayAnim(0);
-
+        AimArrow.enabled = true;
         target.SetActive(true);
         fishingPower.value = 0f;
 

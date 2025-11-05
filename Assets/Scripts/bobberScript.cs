@@ -21,7 +21,9 @@ public class bobberScript : MonoBehaviour
     bool canPress = true;
     private InputAction F_InteractAction;
 
-    [Space(10)]
+    
+
+    [Space(10)] 
     [SerializeField] private AudioClip[] splashSoundClip;
     private AudioSource audioSource;
 
@@ -33,10 +35,10 @@ public class bobberScript : MonoBehaviour
     {
         if (other.CompareTag("Pond") && mainBobber)
         {
-            fishingScript.withinPondBounds = true;
+            fishingScript.withinPondBounds = true;         
             Debug.Log("within!");
             //play audio 
-
+            
             //audioSource.clip = spashSoundClip;
             //audioSource.Play();
         }
@@ -48,9 +50,9 @@ public class bobberScript : MonoBehaviour
             fishingScript.mainScript = false;
             Invoke("hookedPlayer", 0.5f);
             currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
-
-
             spr_animators[2].PlayAnim(3);
+
+            
         }
         if (other.CompareTag("FishDefault") && !mainBobber && !loopCheck)
         {
@@ -59,7 +61,9 @@ public class bobberScript : MonoBehaviour
             Invoke("hookedDefault", 0.5f);
             currentFish = other.gameObject; //should set currentfish to the fish that touched the bobber
             audioSource.PlayOneShot(splashSoundClip[0]);
-            spr_animators[1].PlayAnim(0);
+
+            spr_animators[1].PlayAnim(0);       
+            spr_animators[2].PlayAnim(2);
         }
     }
 
@@ -98,7 +102,8 @@ public class bobberScript : MonoBehaviour
             {
                 //start reeling anim (default fish)
                 spr_animators[0].PlayAnim(2);
-
+                spr_animators[3].PlayAnim(1);
+                
                 catchMeterObj.SetActive(true);
                 catchMeter.value -= 0.005f;
                 if (F_InteractAction.IsPressed())
@@ -121,17 +126,21 @@ public class bobberScript : MonoBehaviour
                     catchMeterObj.SetActive(false);
 
                     //add points
+                    spr_animators[2].UIProgress(2);
+                    spr_animators[3].PlayAnim(0);
                     FishSpawner.Instance.ResetFish(currentFish);
                     Invoke("caughtDefFish", 1f);
                 }
 
                 if (catchMeter.value == 0f)
                 {
+                    spr_animators[3].PlayAnim(0);
+                    spr_animators[2].UIProgress(2);
                     catchingDefault = false;
                     catchMeterObj.SetActive(false);
                     Invoke("failedDefFish", 1f);
 
-                    spr_animators[2].PlayAnim(1);
+                    
                 }
 
             }
